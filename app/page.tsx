@@ -23,7 +23,7 @@ export default function KisanSetuOnboarding() {
 
   const router = useRouter();
   const handleGetStarted = () => {
-    router.push("/dashboard");
+    router.push("/login");
   };
 
   useEffect(() => {
