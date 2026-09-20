@@ -68,7 +68,7 @@ export default function KisanSetuOnboarding() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          className="absolute translate-y-[100%] left-1/2 -translate-x-1/2 w-72 sm:w-88 md:w-[440px] max-h-[48vh] object-contain drop-shadow-md pointer-events-none z-20 scale-100 sm:scale-160 md:scale-160 origin-bottom"
+          className="absolute bottom-[7vh] left-1/2 -translate-x-1/2 w-72 md:w-72 object-contain drop-shadow-lg pointer-events-none z-10 origin-bottom"
         />
       )}
 
@@ -82,19 +82,19 @@ export default function KisanSetuOnboarding() {
         <img
           src="/logoBrown.svg"
           alt="KisanSetu Logo"
-          className="w-11 h-11 md:w-19 md:h-19 object-contain"
+          className="w-11 h-11 md:w-17 md:h-17 object-contain"
         />
 
         <h1
           style={{ fontFamily: "var(--font-oldenburg)" }}
-          className="text-3xl md:text-5xl text-[#351903]"
+          className="text-2xl md:text-3xl text-[#351903]"
         >
           KisanSetu
         </h1>
 
         <p
           style={{ fontFamily: "var(--font-onest)" }}
-          className="text-sm md:text-lg text-center max-w-xs md:max-w-md text-[#925E08]"
+          className="text-xs md:text-sm text-center max-w-xs md:max-w-md text-[#925E08]"
         >
           The Digital Bridge for Every Farmer
         </p>
@@ -102,7 +102,7 @@ export default function KisanSetuOnboarding() {
         {/* Dynamic Rotating Text Block */}
         <div
           style={{ fontFamily: "var(--font-onest)" }}
-          className="mt-10 md:mt-7 text-slate-800 text-base sm:text-lg md:text-2xl sm:px-26 text-center shrink-0 flex flex-col items-center md:whitespace-nowrap"
+          className="mt-10 md:mt-7 text-slate-800 text-base sm:text-lg md:text-xl sm:px-26 text-center shrink-0 flex flex-col items-center md:whitespace-nowrap"
         >
           <span>KisanSetu is a smart digital platform that eliminates long mandi queues with </span>
 
@@ -169,7 +169,7 @@ export default function KisanSetuOnboarding() {
                     delay: 0.5, // Holds back text until the logo finishes gliding up
                     ease: "easeOut",
                   }}
-                  className="flex flex-col items-center space-y-2"
+                  className="flex flex-col items-center"
                 >
                   <h1
                     style={{ fontFamily: "var(--font-oldenburg)" }}
@@ -201,7 +201,7 @@ export default function KisanSetuOnboarding() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               style={{ fontFamily: "var(--font-onest)" }}
-              className="w-full sm:max-w-3xs md:max-w-xs bg-[#F0E383] py-3 px-6 rounded-[14px] text-xl md:text-2xl font-extrabold text-[#365006] text-center tracking-wider z-30 
+              className="w-52 md:w-64 bg-[#F0E383] py-3 px-6 rounded-[14px] text-lg md:text-2xl font-extrabold text-[#365006] text-center tracking-wider z-30 
               X: 3, Y: 4, Blur: 7, Color: #FFFFFF (50% opacity)
               X: -3, Y: -4, Blur: 7, Color: #000000 (20% opacity)
               shadow-[inset_0_3px_2px_rgba(255,255,255,0.6),_inset_0_-4px_4px_rgba(0,0,0,0.15)]

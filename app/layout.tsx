@@ -20,19 +20,6 @@ export const metadata: Metadata = {
   description: "The Digital Bridge for Every Farmer",
 };
 
-// export default function RootLayout({ children }: LayoutProps<"/">) {
-//   return (
-//     <html
-//       lang="en"
-//       className={`${oldenburg.variable} ${onest.variable} h-full antialiased`}
-//     >
-//       <body className={`min-h-full flex flex-col ${onest.className}`}>
-//         {children}
-//       </body>
-//     </html>
-//   );
-// }
-
 export default function RootLayout({
   children,
 }: Readonly<{

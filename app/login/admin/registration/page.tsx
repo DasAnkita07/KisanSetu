@@ -9,18 +9,24 @@ export default function AdminRegistration4() {
   return (
     <main className="min-h-screen w-full bg-[#F8F6ED] flex flex-col">
 
-      {/* Header */}
-      <header className="w-full h-20 sm:h-24 bg-[#365006] flex items-center justify-center">
-        <div className="flex items-center gap-3">
+      {/* ================= HEADER ================= */}
+      <header className="w-full bg-[#365006] rounded-b-md px-4 py-3 sm:px-6 sm:py-4">
+        <div className="flex items-center justify-center">
           <img
-            src="/logoBrown.svg"
-            alt="KisanSetu Logo"
-            className="w-10 h-10 sm:w-12 sm:h-12 brightness-0 invert"
+            src="/mainLogo.svg"
+            alt="KisanSetu"
+            className="w-11 h-11 sm:w-14 sm:h-14"
           />
 
-          <h1 className="font-oldenburg text-white text-2xl sm:text-3xl">
-            KisanSetu
-          </h1>
+          <div className="ml-2">
+            <h1 className="font-oldenburg text-white text-2xl sm:text-3xl leading-none">
+              KisanSetu
+            </h1>
+
+            <p className="font-onest text-[9px] md:text-[11px] text-[#F0E383] text-center">
+              The Digital Bridge for Every Farmer
+            </p>
+          </div>
         </div>
       </header>
 

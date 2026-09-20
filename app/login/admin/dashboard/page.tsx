@@ -162,13 +162,13 @@ export default function AdminDashboardPage() {
         {/* Brand */}
         <div className="flex items-center gap-3">
           <img
-            src="/logoBrown.svg"
+            src="/mainLogo.svg"
             alt="KisanSetu"
-            className="w-10 h-10 sm:w-11 sm:h-11 brightness-0 invert object-contain"
+            className="w-10 h-10 sm:w-11 sm:h-11 object-contain"
           />
           <div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-xl font-bold tracking-tight text-white font-oldenburg">
+            <div className="flex items-center">
+              <span className="text-xl tracking-tight text-white font-oldenburg">
                 KisanSetu
               </span>
             </div>
@@ -336,22 +336,27 @@ export default function AdminDashboardPage() {
       </header>
 
       {/* ================= 2. HERO GREETING BANNER ================= */}
-      <section className="w-full bg-gradient-to-r from-[#FAF6EB] via-[#F5EDD5] to-[#E9DFB9] border-b border-[#E2D5B5] relative overflow-hidden">
+      <section
+        className="w-full min-h-[300px] sm:min-h-[360px] md:min-h-[420px] lg:min-h-[450px] relative overflow-hidden bg-cover bg-center border-b border-[#E2D5B5]"
+          style={{
+            backgroundImage: "url('/adminDashboard.png')",
+          }}
+        >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-7 sm:py-9 flex flex-col md:flex-row md:items-center justify-between relative z-10 gap-4">
-          
+
           {/* Welcome Text */}
           <div className="max-w-xl">
-            <h1 className="text-3xl sm:text-4xl font-bold text-[#2A3E05] flex items-center gap-2 font-oldenburg tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-[#2A3E05] flex items-center gap-2 font-oldenburg tracking-tight mt-7 md:mt-24">
               Welcome, Admin <span className="inline-block animate-pulse">👋</span>
             </h1>
-            <p className="text-[#556934] text-sm sm:text-base font-medium mt-1">
+            <p className="text-[#556934] text-sm sm:text-base font-medium">
               {lang === "EN"
-                ? "Here&apos;s what&apos;s happening across KisanSetu today."
+                ? "Here's what's happening across KisanSetu today."
                 : "यहाँ देखें आज किसानसेतु में क्या हो रहा है।"}
             </p>
 
             {/* Date & Time Pill */}
-            <div className="mt-4 inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-[#D5C69F] px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#483313] shadow-xs">
+            <div className="mt-7 inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-[#D5C69F] px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#483313] shadow-xs">
               <svg className="w-4 h-4 text-[#344E06]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -366,14 +371,6 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          {/* Farmer Illustration Hero Image */}
-          <div className="flex justify-end md:w-auto -mb-7 sm:-mb-9 md:mb-0 relative pointer-events-none">
-            <img
-              src="/onboardingFarmer.png"
-              alt="KisanSetu Farmer"
-              className="w-48 sm:w-56 md:w-64 max-h-48 md:max-h-56 object-contain drop-shadow-md origin-bottom scale-110"
-            />
-          </div>
         </div>
 
         {/* Subtle Decorative Landscape Grass Overlay at base */}
@@ -765,12 +762,6 @@ export default function AdminDashboardPage() {
           
           {/* Left Column: AI Procurement Assistant */}
           <div className="bg-white rounded-2xl p-6 border border-[#E7E2D2] shadow-xs flex flex-col justify-between relative overflow-hidden">
-            {/* Watermark leaf */}
-            <div className="absolute right-2 bottom-2 opacity-15 pointer-events-none">
-              <svg width="110" height="110" viewBox="0 0 24 24" fill="currentColor" className="text-[#344E06]">
-                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.49 9.49 0 0 0 12 21c7 0 11-8 11-8s-2-2-6-5zM4.14 18.84A8.7 8.7 0 0 1 8 9a11 11 0 0 1 6-3c-1.5 2.5-3 5-7.86 12.84z"/>
-              </svg>
-            </div>
 
             <div>
               {/* Header */}
