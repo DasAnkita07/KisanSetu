@@ -12,7 +12,7 @@ export default function AdminRegistration3() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAdminId(true);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -118,13 +118,13 @@ export default function AdminRegistration3() {
                 ******4821
               </p>
 
-              <div className="w-70 md:w-90 h-40 md:h-60 rounded-md bg-[#E9DDBD]/80 border border-[#D5C99F] px-5 py-5">
+              <div className="w-70 md:w-80 h-40 md:h-50 rounded-md bg-[#E9DDBD]/80 border border-[#D5C99F] px-5 py-5">
 
-                <div className="mx-auto w-12 h-2 text-white flex items-center justify-center mb-3 mt-5">
+                <div className="mx-auto w-12 md:w-16 h-2 md:h-3 text-white flex items-center justify-center mb-5 mt-4 md:mb-11 md:mt-7">
                   <img src="/fingerprint.svg" alt="Fingerprint" className="w-24 h-24" />
                 </div>
 
-                <p className="font-onest text-xs sm:text-sm text-[#351903]/70 mb-3 mt-7">
+                <p className="font-onest text-sm md:text-md text-[#351903]/70 mb-3 mt-7">
                   YOUR ADMIN ID
                 </p>
 
