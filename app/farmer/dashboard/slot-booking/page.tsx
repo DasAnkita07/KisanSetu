@@ -29,8 +29,31 @@ export default function SlotBookingPage() {
       return;
     }
 
-    bookSlot({ cropId: selectedCrop, date, timeSlot, center });
+    // Generate a unique booking ID
+    const uniqueId = `KS-${Date.now().toString().slice(-8)}`;
+
+    // Save booking
+    bookSlot({
+      cropId: selectedCrop,
+      date,
+      timeSlot,
+      center
+    });
+
+    // Save QR booking data
+    localStorage.setItem(
+      'kisansetu_booking',
+      JSON.stringify({
+        uniqueId,
+        crop: crops.find(c => c.id === selectedCrop)?.name,
+        date,
+        time: timeSlot,
+        center
+      })
+    );
+
     showToast('Procurement slot booked successfully!', 'success');
+
     setIsModalOpen(false);
     setSelectedCrop('');
     setDate('');
@@ -150,7 +173,7 @@ export default function SlotBookingPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-[#351903] mb-1">Date *</label>
-                    <input required value={date} onChange={e => setDate(e.target.value)} type="date" min={new Date().toISOString().split('T')[0]} className="w-full h-10 px-3 rounded-md border border-[#C9C4B2] outline-none focus:border-[#365006]" />
+                    <input required value={date} onChange={e => setDate(e.target.value)} type="date" min={new Date().toISOString().split('T')[0]} className="w-full h-10 px-3 rounded-md border border-[#C9C4B2] outline-none focus:border-[#365006] text-[#351903]" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-[#351903] mb-1">Time Slot *</label>

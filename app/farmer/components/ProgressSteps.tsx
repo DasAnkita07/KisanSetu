@@ -2,7 +2,7 @@
 import React from 'react';
 
 export default function ProgressSteps({ currentStep }: { currentStep: number }) {
-  const steps = [1, 2, 3];
+  const steps = [1, 2, 3, 4];
   
   return (
     <div className="flex items-center justify-center mb-8">

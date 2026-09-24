@@ -43,45 +43,49 @@ export default function VoiceAssistantPage() {
   };
 
   return (
-    <div className="w-full h-[calc(100vh-140px)] flex flex-col items-center justify-center relative">
+    <div className="w-full h-full min-h-[calc(100vh-140px)] flex flex-col items-center justify-between py-8 relative overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-5">
         <span className="text-[400px]">🎙️</span>
       </div>
 
-      <div className="relative z-10 text-center mb-12">
-        <h1 className="font-oldenburg text-4xl sm:text-5xl text-[#351903] mb-4">Voice Assistant</h1>
-        <p className="font-onest text-lg text-[#351903]/70">Talk to KisanSetu for hands-free navigation and queries.</p>
+      <div className="relative z-10 text-center pt-2">
+        <h1 className="font-oldenburg text-4xl sm:text-5xl text-[#351903] mt-2">Voice Assistant</h1>
+        <p className="font-onest text-md text-[#351903]/70">Talk to KisanSetu for hands-free navigation and queries.</p>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center">
-        {/* Animated Waveform Background */}
-        <AnimatePresence>
-          {isListening && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-[#365006]/10 flex items-center justify-center"
-            >
+      <div className="relative z-10 flex flex-col items-center justify-center my-auto space-y-6">
+
+        {/* Container wrapping button AND centered pulsing waveform */}
+        <div className="relative flex items-center justify-center">
+          <AnimatePresence>
+            {isListening && (
               <motion.div 
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-                className="w-3/4 h-3/4 rounded-full bg-[#365006]/20"
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                className="absolute translate-y-33 w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-[#365006]/10 flex items-center justify-center pointer-events-none z-0"
+              >
+                <motion.div 
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                  className="w-3/4 h-3/4 rounded-full bg-[#365006]/20"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-        <button 
-          onClick={toggleListen}
-          className={`relative z-20 w-24 h-24 sm:w-32 sm:h-32 rounded-full flex items-center justify-center text-4xl sm:text-5xl shadow-2xl transition-all duration-300 ${
-            isListening ? 'bg-[#2d4305] text-white scale-110 shadow-[0_0_40px_rgba(54,80,6,0.4)]' : 'bg-[#365006] text-white hover:scale-105 hover:bg-[#2d4305]'
-          }`}
-        >
-          🎙️
-        </button>
+          <button 
+            onClick={toggleListen}
+            className={`relative z-20 translate-y-33 w-24 h-24 sm:w-32 sm:h-32 rounded-full flex items-center justify-center text-4xl sm:text-5xl shadow-2xl transition-all duration-300 ${
+              isListening ? 'bg-[#2d4305] text-white scale-110 shadow-[0_0_40px_rgba(54,80,6,0.4)]' : 'bg-[#365006] text-white hover:scale-105 hover:bg-[#2d4305]'
+            }`}
+          >
+            🎙️
+          </button>
+        </div>
 
-        <div className="mt-12 h-32 flex flex-col items-center justify-center w-full max-w-lg text-center px-4">
+        {/* Increased mt-40 to give clear space below the button and ripple */}
+        <div className="mt-40 min-h-[128px] flex flex-col items-center justify-center w-full max-w-lg text-center px-4 z-10">
           <AnimatePresence mode="wait">
             {transcript && (
               <motion.div
@@ -109,6 +113,7 @@ export default function VoiceAssistantPage() {
             )}
           </AnimatePresence>
         </div>
+
       </div>
       
       {!isListening && !response && (

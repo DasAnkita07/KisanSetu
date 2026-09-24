@@ -8,6 +8,7 @@ import DashboardTables from './components/DashboardTables';
 import { useKisanData } from './services/useDataHooks';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import BookingQR from "./components/bookingQR";
 
 export default function DashboardOverview() {
   const { crops, orders, payments, queue, refreshQueue } = useKisanData();
@@ -65,11 +66,7 @@ export default function DashboardOverview() {
 
       <QuickActions />
 
-      {/* Main Grid: Left Side (Tables & Queue), Right Side (Assistants) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
-        
-        <div className="lg:col-span-8 space-y-6">
-          <DashboardTables />
+      <div className="lg:col-span-8 space-y-6">
           
           {/* Live Procurement Queue */}
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="bg-white rounded-xl border border-[#D5D0BD] shadow-sm p-5 relative overflow-hidden">
@@ -151,7 +148,9 @@ export default function DashboardOverview() {
         </div>
 
         {/* Right Sidebar: AI and Voice Assistants */}
-        <div className="lg:col-span-4 space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+
+          <BookingQR />
           
           {/* AI Assistant Widget */}
           <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 }} className="bg-[#F9FAF6] rounded-xl border border-[#D5D0BD] shadow-sm p-5">
@@ -234,7 +233,9 @@ export default function DashboardOverview() {
           </motion.div>
 
         </div>
-      </div>
+
+      <DashboardTables />
+      
     </div>
   );
 }

@@ -7,6 +7,28 @@ import Link from 'next/link';
 export default function PersonalDetailsForm({ onNext }: { onNext: () => void }) {
   const [mobileNumber, setMobileNumber] = useState('');
   const [otp, setOtp] = useState('');
+  const [error, setError] = useState('');
+  const [fullName, setFullName] = useState('');
+
+  const handleNext = () => {
+    if (!fullName || !mobileNumber || !otp) {
+      setError('Please fill all required fields.');
+      return;
+    }
+
+    if (mobileNumber.length !== 10) {
+      setError('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
+    if (otp.length !== 6) {
+      setError('Please enter a valid 6-digit OTP.');
+      return;
+    }
+
+    setError('');
+    onNext();
+  };
 
   return (
     <div className="w-full max-w-md">
@@ -20,8 +42,13 @@ export default function PersonalDetailsForm({ onNext }: { onNext: () => void }) 
       </div>
 
       <div className="space-y-5">
-        <FormInput label="Full Name" placeholder="Enter your full name" />
-        
+        <FormInput
+          label="Full Name"
+          placeholder="Enter your full name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
+    
         <div>
           <label className="block font-onest text-sm font-medium text-[#351903] mb-2">
             Mobile Number
@@ -95,8 +122,14 @@ export default function PersonalDetailsForm({ onNext }: { onNext: () => void }) 
           </div>
         </div>
 
+        {error && (
+          <p className="text-center text-red-600 text-sm font-onest">
+            {error}
+          </p>
+        )}
+
         <button 
-          onClick={onNext}
+          onClick={handleNext}
           type="button"
           className="w-full h-12 mt-4 rounded-md bg-[#365006] text-white font-onest text-sm font-semibold tracking-wide hover:bg-[#2d4305] transition cursor-pointer"
         >

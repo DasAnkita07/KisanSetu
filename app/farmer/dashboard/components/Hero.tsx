@@ -16,41 +16,46 @@ export default function Hero() {
     <motion.div 
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative w-full h-[280px] sm:h-[320px] rounded-xl overflow-hidden shadow-sm border border-[#D5D0BD] bg-white flex"
+      className="relative w-full h-[290px] sm:h-[450px] rounded-xl overflow-hidden shadow-sm border border-[#D5D0BD] bg-white flex"
     >
-      {/* Background landscape (simulated with a gradient/color overlay since we don't have the exact image asset) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#F9FAF6] via-[#F9FAF6] to-transparent z-0" />
-      <div 
-        className="absolute inset-y-0 right-0 w-2/3 md:w-1/2 bg-cover bg-left z-0"
-        style={{ backgroundImage: "url('/bgsketch.png')", opacity: 0.8 }}
-      />
-      {/* We can use a solid green tint on the right if image is missing */}
-      <div className="absolute inset-y-0 right-0 w-2/3 md:w-1/2 bg-[#365006]/10 z-0" />
+      <section
+        className="w-full min-h-[200px] sm:min-h-[200px] md:min-h-[420px] lg:min-h-[450px] relative overflow-hidden bg-cover bg-[66%_center] md:bg-center border-b border-[#E2D5B5]"
+          style={{
+            backgroundImage: "url('/farmerDashboard.png')",
+          }}
+        >
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-7 sm:py-9 flex flex-col md:flex-row md:items-center justify-between relative z-10 gap-4">
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col justify-center h-full px-6 sm:px-8 md:px-12 w-full md:w-3/5">
-        <h2 className="font-oldenburg text-2xl sm:text-3xl lg:text-4xl text-[#351903] leading-snug mb-2 break-words">
-          Welcome Back,<br/>{profile?.name || 'Loading...'} <span className="inline-block hover:rotate-12 transition-transform">👋</span>
-        </h2>
-        
-        <p className="font-onest text-[#351903]/70 text-sm sm:text-base mb-4 sm:mb-6 max-w-sm line-clamp-2 sm:line-clamp-none">
-          Manage your crops, procurement, orders and payments from one place.
-        </p>
+          {/* Welcome Text */}
+          <div className="max-w-xl">
+            <h1 className="text-lg md:text-4xl font-bold text-[#2A3E05] flex items-center gap-2 font-oldenburg tracking-tight mt-7 md:mt-24">
+              Welcome, Rajesh Kumar <span className="inline-block animate-pulse">👋</span>
+            </h1>
+            <p className="text-[#556934] text-xs sm:text-base font-medium">
+               "Here's what's happening across KisanSetu today."
+            </p>
 
-        <div className="flex items-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-2 rounded-md border border-[#D5D0BD] w-max mb-4 sm:mb-6">
-          <span className="text-[#365006] text-base sm:text-lg">📅</span>
-          <span className="font-onest text-xs sm:text-sm text-[#351903] font-medium">{dateStr} | {timeStr}</span>
+            {/* Date & Time Pill */}
+            <div className="mt-7 inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-[#D5C69F] px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#483313] shadow-xs">
+              <svg className="w-4 h-4 text-[#344E06]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <span>14 Apr 2026</span>
+              <span className="text-gray-300">|</span>
+              <span>10:24 AM</span>
+            </div>
+          </div>
+
         </div>
 
-        <p className="font-oldenburg text-[#365006] italic text-base sm:text-lg md:text-xl">
-          "Good crops today, a brighter tomorrow."
-        </p>
-      </div>
-
-      {/* Right side Farmer Graphic area */}
-      <div className="hidden md:flex relative z-10 w-2/5 h-full items-end justify-end p-4">
-        {/* Intentionally left empty to allow the agricultural background sketch to be visible */}
-      </div>
+        {/* Subtle Decorative Landscape Grass Overlay at base */}
+        <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-t from-[#344E06]/10 to-transparent pointer-events-none" />
+      </section>
     </motion.div>
   );
 }

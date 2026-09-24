@@ -4,15 +4,45 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useKisanData } from '../services/useDataHooks';
 
-export default function TopHeader() {
+export default function TopHeader({
+  setIsMobileOpen,
+}: {
+  setIsMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const { profile, notifications } = useKisanData();
   const unreadCount = notifications.filter(n => !n.read).length;
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <header className="h-16 bg-[#365006] shadow-md flex items-center justify-between px-6 sticky top-0 z-10 w-full">
+    <header className="h-16 bg-[#365006] shadow-md flex items-center justify-between px-3 sticky top-0 z-10 w-full">
       <div className="flex-1">
         {/* Mobile menu toggle would go here */}
+        <div className="flex items-center gap-3">
+
+          <button
+            onClick={() => setIsMobileOpen(true)}
+            className="md:hidden w-10 h-10 rounded-lg bg-[#2d4305] text-white flex items-center justify-center text-xl"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+
+          <img
+            src="/mainLogo.svg"
+            alt="KisanSetu"
+            className="w-10 h-10"
+          />
+
+          <div>
+            <h1 className="font-oldenburg text-white text-xl sm:text-2xl tracking-wide leading-none">
+              KisanSetu
+            </h1>
+
+            <p className="font-onest text-[9px] sm:text-[10px] text-[#F0E383] mt-1">
+              The Digital Bridge for Every Farmer
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="flex items-center gap-6">

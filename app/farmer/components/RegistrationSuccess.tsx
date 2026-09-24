@@ -1,7 +1,15 @@
 "use client";
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function RegistrationSuccess({ onNext }: { onNext: () => void }) {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onNext();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [onNext]);
+
   return (
     <div className="w-full max-w-md text-center">
       <div className="flex flex-col items-center justify-center w-full max-w-sm rounded-md bg-[#ffffff]/50 border border-[#ffffff] px-5 py-10 mx-auto mt-8">
@@ -16,13 +24,6 @@ export default function RegistrationSuccess({ onNext }: { onNext: () => void }) 
         </p>
       </div>
 
-      <button
-        type="button"
-        onClick={onNext}
-        className="w-full h-12 mt-8 rounded-md bg-[#365006] text-white font-onest text-sm font-semibold tracking-wide hover:bg-[#2d4305] transition cursor-pointer"
-      >
-        VIEW FARMER ID
-      </button>
     </div>
   );
 }
