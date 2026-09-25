@@ -28,7 +28,7 @@ const metricTrendDetails: Record<MetricTrendKey, MetricTrendData> = {
     unit: "Farmers",
     insights: "Farmer registrations in Singur and Nadia clusters increased by 28% following the local Kisan Credit Card awareness camp.",
     linkText: "View Full Farmers Directory",
-    linkHref: "/login/admin/dashboard/farmers",
+    linkHref: "/admin/dashboard/farmers",
     bars: [
       { label: "Mon", value: 215, display: "215" },
       { label: "Tue", value: 220, display: "220" },
@@ -47,7 +47,7 @@ const metricTrendDetails: Record<MetricTrendKey, MetricTrendData> = {
     unit: "Centres",
     insights: "Centre B (88%) and Centre F (98%) are heavily utilized. Rebalancing incoming token slots to Centre C will prevent bottlenecks.",
     linkText: "Manage All Procurement Centres",
-    linkHref: "/login/admin/dashboard/centres",
+    linkHref: "/admin/dashboard/centres",
     bars: [
       { label: "Centre A", value: 56, display: "56%" },
       { label: "Centre B", value: 88, display: "88%", highlight: true },
@@ -81,7 +81,7 @@ const metricTrendDetails: Record<MetricTrendKey, MetricTrendData> = {
     unit: "kg",
     insights: "Potato represents 58% of today's intake. Automated grading shows 94.2% of total volume qualified for Grade A MSP premium pricing.",
     linkText: "View Complete Procurement Records",
-    linkHref: "/login/admin/dashboard/procurement",
+    linkHref: "/admin/dashboard/procurement",
     bars: [
       { label: "Potato", value: 720, display: "720 kg", highlight: true },
       { label: "Wheat", value: 350, display: "350 kg" },
@@ -96,7 +96,7 @@ const metricTrendDetails: Record<MetricTrendKey, MetricTrendData> = {
     unit: "Pending",
     insights: "12 out of 14 bank accounts have completed instant Aadhaar-seeding checks. One-click batch approval will release funds in real-time.",
     linkText: "Go to Payments & Dues Portal",
-    linkHref: "/login/admin/dashboard/payments",
+    linkHref: "/admin/dashboard/payments",
     bars: [
       { label: "Cleared", value: 32, display: "32" },
       { label: "Pending", value: 14, display: "14", highlight: true },
@@ -151,7 +151,7 @@ export default function AdminDashboardPage() {
   };
 
   const handleLogout = () => {
-    router.push("/login/admin");
+    router.push("/admin");
   };
 
   return (
@@ -622,7 +622,7 @@ export default function AdminDashboardPage() {
             
             {/* 1. Farmers */}
             <Link
-              href="/login/admin/dashboard/farmers"
+              href="/admin/dashboard/farmers"
               className="bg-white rounded-xl p-4 border border-[#E7E2D2] shadow-2xs hover:border-[#344E06] hover:shadow-sm transition-all flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-3">
@@ -641,7 +641,7 @@ export default function AdminDashboardPage() {
 
             {/* 2. Centres */}
             <Link
-              href="/login/admin/dashboard/centres"
+              href="/admin/dashboard/centres"
               className="bg-white rounded-xl p-4 border border-[#E7E2D2] shadow-2xs hover:border-[#344E06] hover:shadow-sm transition-all flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-3">
@@ -679,7 +679,7 @@ export default function AdminDashboardPage() {
 
             {/* 4. Procurement */}
             <Link
-              href="/login/admin/dashboard/procurement"
+              href="/admin/dashboard/procurement"
               className="bg-white rounded-xl p-4 border border-[#E7E2D2] shadow-2xs hover:border-[#16A34A] hover:shadow-sm transition-all flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-3">
@@ -698,7 +698,7 @@ export default function AdminDashboardPage() {
 
             {/* 5. Payments */}
             <Link
-              href="/login/admin/dashboard/payments"
+              href="/admin/dashboard/payments"
               className="bg-white rounded-xl p-4 border border-[#E7E2D2] shadow-2xs hover:border-[#7C3AED] hover:shadow-sm transition-all flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-3">
@@ -966,7 +966,7 @@ export default function AdminDashboardPage() {
             </div>
 
             <div
-              onClick={(e) => { e.stopPropagation(); router.push("/login/admin/dashboard/payments"); }}
+              onClick={(e) => { e.stopPropagation(); router.push("/admin/dashboard/payments"); }}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFFBEB] text-[#B45309] font-medium border border-[#FDE68A] hover:opacity-80 transition"
             >
               <span>💳</span>
@@ -974,7 +974,7 @@ export default function AdminDashboardPage() {
             </div>
 
             <div
-              onClick={(e) => { e.stopPropagation(); router.push("/login/admin/dashboard/centres"); }}
+              onClick={(e) => { e.stopPropagation(); router.push("/admin/dashboard/centres"); }}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FEF2F2] text-[#B91C1C] font-medium border border-[#FECACA] hover:opacity-80 transition"
             >
               <span>⚠️</span>

@@ -53,7 +53,7 @@ export default function AdminRegistration3() {
       <div className="w-full flex justify-center pt-5 sm:pt-7">
         <div className="flex border-b border-[#365006]">
           <button
-            onClick={() => router.push("/login/admin")}
+            onClick={() => router.push("/admin")}
             className="px-8 sm:px-12 pb-2 font-onest text-sm text-[#351903]"
           >
             LOGIN
@@ -138,7 +138,7 @@ export default function AdminRegistration3() {
 
               <button
                 type="button"
-                onClick={() => router.push("/login/admin")}
+                onClick={() => router.push("/admin")}
                 className="mt-8 px-5 h-10 rounded-md bg-[#365006] text-white font-onest text-sm font-semibold tracking-wide hover:bg-[#2d4305] transition"
               >
                 CONTINUE TO LOGIN

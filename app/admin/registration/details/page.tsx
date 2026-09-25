@@ -42,7 +42,7 @@ export default function AdminRegistration1() {
     sessionStorage.setItem("mobileNumber", mobileNumber);
 
     // Go to AdminRegistration2
-    router.push("/login/admin/registration/password");
+    router.push("/admin/registration/password");
   };
 
   return (
@@ -82,7 +82,7 @@ export default function AdminRegistration1() {
         <div className="w-full flex justify-center pt-5 sm:pt-7">
           <div className="flex border-b border-[#365006]">
             <button
-              onClick={() => router.push("/login/admin")}
+              onClick={() => router.push("/admin")}
               className="px-8 sm:px-12 pb-2 font-onest text-sm sm:text-base text-[#351903]"
             >
               LOGIN
@@ -232,7 +232,7 @@ export default function AdminRegistration1() {
               <p className="text-center font-onest text-sm text-[#351903]/70 pt-1">
                 Already registered?{" "}
                 <button
-                  onClick={() => router.push("/login/admin")}
+                  onClick={() => router.push("/admin")}
                   className="font-semibold text-[#365006] hover:underline"
                 >
                   Login

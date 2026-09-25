@@ -92,7 +92,7 @@ export default function FarmersManagementPage() {
       <header className="w-full bg-[#344E06] text-white px-4 sm:px-8 py-3 flex items-center justify-between shadow-md">
         <div className="flex items-center gap-3">
           <Link
-            href="/login/admin/dashboard"
+            href="/admin/dashboard"
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition text-sm cursor-pointer"
           >
             ←
@@ -110,7 +110,7 @@ export default function FarmersManagementPage() {
             + Add Farmer
           </button>
           <Link
-            href="/login/admin/dashboard"
+            href="/admin/dashboard"
             className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg text-white font-medium"
           >
             Back to Dashboard

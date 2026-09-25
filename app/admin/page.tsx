@@ -28,11 +28,11 @@ export default function AdminLoginPage() {
     }
 
     setError("");
-    router.push("/login/admin/dashboard");
+    router.push("/admin/dashboard");
   };
 
   const handleRegister = () => {
-    router.push("/login/admin/registration/details");
+    router.push("/admin/registration/details");
   };
 
   const handleSendResetOtp = () => {

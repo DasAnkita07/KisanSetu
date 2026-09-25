@@ -367,7 +367,7 @@ export default function ProcurementManagementPage() {
         <div className="flex items-center gap-3">
 
           <Link
-            href="/login/admin/dashboard"
+            href="/admin/dashboard"
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition text-sm"
           >
             ←

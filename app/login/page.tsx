@@ -95,7 +95,7 @@ export default function LoginPage() {
           {/* ================= ADMIN CARD ================= */}
           <button
             type="button"
-            onClick={() => router.push("/login/admin")}
+            onClick={() => router.push("/admin")}
             className="w-[240px] md:w-[360px] h-[120px] sm:h-[145px] rounded-lg border border-[#B18A3D] bg-[#E8D7B0]/85 shadow-sm flex flex-col items-center justify-center hover:bg-[#E1CCA0] transition mx-auto"
           >
             {/* Admin Icon */}

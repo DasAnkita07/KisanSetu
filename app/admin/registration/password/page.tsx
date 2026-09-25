@@ -43,7 +43,7 @@ export default function AdminRegistration2() {
         <div className="w-full flex justify-center pt-5 sm:pt-7">
           <div className="flex border-b border-[#365006]">
             <button
-              onClick={() => router.push("/login/admin")}
+              onClick={() => router.push("/admin")}
               className="px-8 sm:px-12 pb-2 font-onest text-sm sm:text-base text-[#351903]"
             >
               LOGIN
@@ -120,7 +120,7 @@ export default function AdminRegistration2() {
               <button
                 type="button"
                 onClick={() =>
-                  router.push("/login/admin/registration/success")
+                  router.push("/admin/registration/success")
                 }
                 className="w-full h-12 rounded-md bg-[#365006] text-white font-onest text-sm font-semibold tracking-wide hover:bg-[#2d4305] transition"
               >
@@ -130,7 +130,7 @@ export default function AdminRegistration2() {
               <p className="text-center font-onest text-sm text-[#351903]/70 pt-1">
                 Already registered?{" "}
                 <button
-                  onClick={() => router.push("/login/admin")}
+                  onClick={() => router.push("/admin")}
                   className="font-semibold text-[#365006] hover:underline"
                 >
                   Login
