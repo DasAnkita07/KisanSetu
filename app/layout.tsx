@@ -16,7 +16,7 @@ const onest = Onest({
 });
 
 export const metadata: Metadata = {
-  title: "KisanSetu",
+  title: "KrishiSangam",
   description: "The Digital Bridge for Every Farmer",
 };
 

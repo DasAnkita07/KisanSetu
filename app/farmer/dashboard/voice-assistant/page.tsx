@@ -50,7 +50,7 @@ export default function VoiceAssistantPage() {
 
       <div className="relative z-10 text-center pt-2">
         <h1 className="font-oldenburg text-4xl sm:text-5xl text-[#351903] mt-2">Voice Assistant</h1>
-        <p className="font-onest text-md text-[#351903]/70">Talk to KisanSetu for hands-free navigation and queries.</p>
+        <p className="font-onest text-md text-[#351903]/70">Talk to KrishiSangam for hands-free navigation and queries.</p>
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center my-auto space-y-6">

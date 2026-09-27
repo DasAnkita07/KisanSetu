@@ -1,15 +1,43 @@
 "use client";
-import React, { useState } from 'react';
-import FarmerAuthLayout from '../components/FarmerAuthLayout';
-import ProgressSteps from '../components/ProgressSteps';
-import PersonalDetailsForm from '../components/PersonalDetailsForm';
-import FarmDetailsForm from '../components/FarmDetailsForm';
-import CreatePasswordForm from '../components/CreatePasswordForm';
-import RegistrationSuccess from '../components/RegistrationSuccess';
-import FarmerIdCard from '../components/FarmerIdCard';
+
+import React, { useEffect, useState } from "react";
+import FarmerAuthLayout from "../components/FarmerAuthLayout";
+import ProgressSteps from "../components/ProgressSteps";
+import PersonalDetailsForm from "../components/PersonalDetailsForm";
+import FarmDetailsForm from "../components/FarmDetailsForm";
+import CreatePasswordForm from "../components/CreatePasswordForm";
+import RegistrationSuccess from "../components/RegistrationSuccess";
+import FarmerIdCard from "../components/FarmerIdCard";
 
 export default function FarmerRegister() {
   const [step, setStep] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Restore the last registration step after refresh
+  useEffect(() => {
+    const savedStep = localStorage.getItem("KrishiSangam_registration_step");
+
+    if (savedStep) {
+      setStep(Number(savedStep));
+    }
+
+    setIsLoaded(true);
+  }, []);
+
+  // Save the current step
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem(
+        "KrishiSangam_registration_step",
+        step.toString()
+      );
+    }
+  }, [step, isLoaded]);
+
+  // Prevent rendering the wrong step for a moment while restoring
+  if (!isLoaded) {
+    return null;
+  }
 
   return (
     <FarmerAuthLayout>
@@ -40,10 +68,31 @@ export default function FarmerRegister() {
         )}
 
         <div className="w-full">
-          {step === 1 && <PersonalDetailsForm onNext={() => setStep(2)} />}
-          {step === 2 && <FarmDetailsForm onBack={() => setStep(1)} onNext={() => setStep(3)} />}
-          {step === 3 && <CreatePasswordForm onSubmit={() => setStep(4)} />}
-          {step === 4 && <RegistrationSuccess onNext={() => setStep(5)} />}
+          {step === 1 && (
+            <PersonalDetailsForm
+              onNext={() => setStep(2)}
+            />
+          )}
+
+          {step === 2 && (
+            <FarmDetailsForm
+              onBack={() => setStep(1)}
+              onNext={() => setStep(3)}
+            />
+          )}
+
+          {step === 3 && (
+            <CreatePasswordForm
+              onSubmit={() => setStep(4)}
+            />
+          )}
+
+          {step === 4 && (
+            <RegistrationSuccess
+              onNext={() => setStep(5)}
+            />
+          )}
+
           {step === 5 && <FarmerIdCard />}
         </div>
       </div>

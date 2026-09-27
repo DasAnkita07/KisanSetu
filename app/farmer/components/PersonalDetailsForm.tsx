@@ -4,31 +4,66 @@ import FormInput from './FormInput';
 import FormSelect from './FormSelect';
 import Link from 'next/link';
 
-export default function PersonalDetailsForm({ onNext }: { onNext: () => void }) {
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [otp, setOtp] = useState('');
-  const [error, setError] = useState('');
-  const [fullName, setFullName] = useState('');
+export default function PersonalDetailsForm({
+  onNext,
+}: {
+  onNext: () => void;
+}) {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState("");
+  const [district, setDistrict] = useState("");
+  const [village, setVillage] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [gender, setGender] = useState("");
+  const [error, setError] = useState("");
 
   const handleNext = () => {
-    if (!fullName || !mobileNumber || !otp) {
-      setError('Please fill all required fields.');
-      return;
-    }
+  if (!fullName) {
+    setError("Please enter your full name.");
+    return;
+  }
 
-    if (mobileNumber.length !== 10) {
-      setError('Please enter a valid 10-digit mobile number.');
-      return;
-    }
+  if (!email) {
+    setError("Please enter your email address.");
+    return;
+  }
 
-    if (otp.length !== 6) {
-      setError('Please enter a valid 6-digit OTP.');
-      return;
-    }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    setError('');
-    onNext();
-  };
+  if (!emailRegex.test(email)) {
+    setError("Please enter a valid email address.");
+    return;
+  }
+
+  if (!state) {
+    setError("Please select your state.");
+    return;
+  }
+
+  if (!district) {
+    setError("Please select your district.");
+    return;
+  }
+
+  if (!village) {
+    setError("Please enter your village / house details.");
+    return;
+  }
+
+  if (!dateOfBirth) {
+    setError("Please select your date of birth.");
+    return;
+  }
+
+  if (!gender) {
+    setError("Please select your gender.");
+    return;
+  }
+
+  setError("");
+  onNext();
+};
 
   return (
     <div className="w-full max-w-md">
@@ -50,74 +85,65 @@ export default function PersonalDetailsForm({ onNext }: { onNext: () => void }) 
         />
     
         <div>
-          <label className="block font-onest text-sm font-medium text-[#351903] mb-2">
-            Mobile Number
-          </label>
-          <input
-            type="tel"
-            value={mobileNumber}
-            onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, "").slice(0, 10))}
-            placeholder="Enter 10-digit mobile number"
-            className="w-full h-12 rounded-md border border-[#C9C4B2] bg-white px-4 font-onest text-sm text-[#351903] outline-none focus:border-[#365006] focus:ring-1 focus:ring-[#365006]"
+          <FormInput
+            label="Email Address"
+            type="email"
+            placeholder="Enter your email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-
-        <div>
-          <label className="block font-onest text-sm font-medium text-[#351903] mb-2">
-            OTP
-          </label>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
-              placeholder="Enter OTP"
-              className="flex-1 min-w-0 h-12 rounded-md border border-[#C9C4B2] bg-white px-4 font-onest text-sm text-[#351903] outline-none focus:border-[#365006] focus:ring-1 focus:ring-[#365006]"
-            />
-            <button
-              type="button"
-              className="h-12 px-4 sm:px-5 rounded-md bg-[#351903] text-white font-onest text-xs sm:text-sm font-semibold hover:opacity-90 transition cursor-pointer"
-            >
-              GET OTP
-            </button>
-          </div>
         </div>
 
         <div className="flex gap-4">
           <div className="flex-1">
             <FormSelect 
-              label="State" 
+              label="State"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
               options={[
-                { value: 'mh', label: 'Maharashtra' },
-                { value: 'up', label: 'Uttar Pradesh' },
-              ]} 
+                { value: "mh", label: "Maharashtra" },
+                { value: "up", label: "Uttar Pradesh" },
+              ]}
             />
           </div>
           <div className="flex-1">
             <FormSelect 
-              label="District" 
+              label="District"
+              value={district}
+              onChange={(e) => setDistrict(e.target.value)}
               options={[
-                { value: 'd1', label: 'Pune' },
-                { value: 'd2', label: 'Nashik' },
-              ]} 
+                { value: "d1", label: "Pune" },
+                { value: "d2", label: "Nashik" },
+              ]}
             />
           </div>
         </div>
         
-        <FormInput label="Village / House" placeholder="Enter your village or house details" />
+        <FormInput
+          label="Village / House"
+          placeholder="Enter your village or house details"
+          value={village}
+          onChange={(e) => setVillage(e.target.value)}
+        />
 
         <div className="flex gap-4">
+          <FormInput
+            label="Date of Birth"
+            type="date"
+            placeholder="Select date"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+          />
           <div className="flex-1">
-            <FormInput label="Date of Birth" type="date" placeholder="Select date" />
-          </div>
-          <div className="flex-1">
-            <FormSelect 
-              label="Gender" 
+            <FormSelect
+              label="Gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
               options={[
-                { value: 'm', label: 'Male' },
-                { value: 'f', label: 'Female' },
-                { value: 'o', label: 'Other' },
-              ]} 
+                { value: "m", label: "Male" },
+                { value: "f", label: "Female" },
+                { value: "o", label: "Other" },
+              ]}
             />
           </div>
         </div>
