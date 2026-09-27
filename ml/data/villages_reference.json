@@ -1,0 +1,42 @@
+{
+  "Kalyani, Nadia": {
+    "district": "Nadia",
+    "coordinates": {"lat": 22.9751, "lon": 88.4344}
+  },
+  "Burdwan Central": {
+    "district": "Purba Bardhaman",
+    "coordinates": {"lat": 23.2450, "lon": 87.8650}
+  },
+  "Singur, Hooghly": {
+    "district": "Hooghly",
+    "coordinates": {"lat": 22.8150, "lon": 88.2300}
+  },
+  "Guskara, Purba": {
+    "district": "Purba Bardhaman",
+    "coordinates": {"lat": 23.5000, "lon": 87.7550}
+  },
+  "Memari, Burdwan": {
+    "district": "Purba Bardhaman",
+    "coordinates": {"lat": 23.1880, "lon": 88.1100}
+  },
+  "Ranaghat, Nadia": {
+    "district": "Nadia",
+    "coordinates": {"lat": 23.1850, "lon": 88.5800}
+  },
+  "Chinsurah, Hooghly": {
+    "district": "Hooghly",
+    "coordinates": {"lat": 22.9010, "lon": 88.3970}
+  },
+  "Kalna, Purba Bardhaman": {
+    "district": "Purba Bardhaman",
+    "coordinates": {"lat": 23.2200, "lon": 88.3600}
+  },
+  "Katwa, Purba Bardhaman": {
+    "district": "Purba Bardhaman",
+    "coordinates": {"lat": 23.6400, "lon": 88.1300}
+  },
+  "Santipur, Nadia": {
+    "district": "Nadia",
+    "coordinates": {"lat": 23.2500, "lon": 88.4300}
+  }
+}
