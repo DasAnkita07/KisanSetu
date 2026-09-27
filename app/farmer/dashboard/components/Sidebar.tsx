@@ -13,7 +13,6 @@ const NAV_ITEMS = [
   { name: "Sell Produce", path: "/farmer/dashboard/sell", icon: "🛒" },
   { name: "Slot Booking", path: "/farmer/dashboard/slot-booking", icon: "📅" },
   { name: "Live Queue", path: "/farmer/dashboard/queue", icon: "👥" },
-  { name: "Orders", path: "/farmer/dashboard/orders", icon: "📦" },
   { name: "Payments", path: "/farmer/dashboard/payments", icon: "💳" },
   { name: "Track Status", path: "/farmer/dashboard/track-status", icon: "🚚" },
   { name: "Crop Assistant (AI)", path: "/farmer/dashboard/crop-assistant", icon: "🤖" },
@@ -99,15 +98,7 @@ export default function Sidebar({
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      {/* <button
-        onClick={() => setIsMobileOpen(true)}
-        className="fixed top-4 left-4 z-[60] md:hidden w-11 h-11 rounded-lg bg-[#365006] text-white shadow-lg flex items-center justify-center text-xl"
-        aria-label="Open menu"
-      >
-        ☰
-      </button> */}
-
+      
       {/* Mobile Overlay */}
       {isMobileOpen && (
         <div
