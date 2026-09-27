@@ -105,7 +105,7 @@ const metricTrendDetails: Record<MetricTrendKey, MetricTrendData> = {
     ],
   },
   requests: {
-    title: "Pending Requests",
+    title: "Farmer Requests Pipeline",
     badge: "Service Requests",
     mainVal: "7",
     subVal: "+2 new requests received today",
@@ -155,6 +155,7 @@ export default function AdminDashboardPage() {
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [showRecentActivityModal, setShowRecentActivityModal] = useState(false);
   const [activeQuickActionModal, setActiveQuickActionModal] = useState<string | null>(null);
+  const [showAIModal, setShowAIModal] = useState(false);
 
   // AI Procurement Assistant States
   const [aiInsights, setAiInsights] = useState<any[]>([]);
@@ -261,7 +262,19 @@ export default function AdminDashboardPage() {
   const [selectedMetricTrend, setSelectedMetricTrend] = useState<MetricTrendKey | null>(null);
 
   // Live request state in modal
+const [requestsList, setRequestsList] = useState([
+    { id: 1, name: "Ramesh Singh", desc: "Mandi Slot Reschedule", time: "Requested new time: 3:00 PM today", status: "pending" },
+    { id: 2, name: "Vikram Yadav", desc: "New Farmer Registration", time: "Kisan Credit Card verification pending", status: "pending" },
+    { id: 3, name: "Gopal Roy", desc: "Weight Discrepancy Query", time: "Centre A Weighbridge #2", status: "pending" },
+  ]);
 
+  const handleApproveRequest = (id: number) => {
+    setRequestsList((prev) => prev.map((r) => (r.id === id ? { ...r, status: "approved" } : r)));
+  };
+
+  const handleDeclineRequest = (id: number) => {
+    setRequestsList((prev) => prev.map((r) => (r.id === id ? { ...r, status: "declined" } : r)));
+  };
 
   const handleLogout = () => {
     router.push("/admin");
@@ -292,7 +305,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Top Right Utilities */}
-        <div className="flex items-center gap-2 sm:gap-4 relative ml-auto">
+        <div className="flex items-center gap-2 sm:gap-4 relative">
           {/* Language Switcher */}
           <button
             onClick={() => setLang((prev) => (prev === "EN" ? "HI" : "EN"))}
@@ -340,7 +353,7 @@ export default function AdminDashboardPage() {
                   className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 py-3 z-50 text-gray-800"
                 >
                   <div className="px-4 pb-2 border-b border-gray-100 flex items-center justify-between">
-                    <span className="font-semibold text-sm text-[#344E06]">Alerts &amp; Notices ({notificationCount})</span>
+                    <span className="font-semibold text-sm text-[#344E06]">Alerts & Notices ({notificationCount})</span>
                     <div className="flex items-center gap-2">
                       {notificationCount > 0 && (
                         <button
@@ -384,7 +397,7 @@ export default function AdminDashboardPage() {
                           </div>
                         </div>
                         <div
-                          onClick={() => { setShowNotifications(false); }}
+                          onClick={() => { setActiveQuickActionModal("requests"); setShowNotifications(false); }}
                           className="p-3 hover:bg-amber-50/50 flex gap-2.5 cursor-pointer"
                         >
                           <span className="text-blue-500 font-bold"><DocumentTextIcon className="w-4 h-4" /></span>
@@ -672,7 +685,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Two Lower Stat Highlights (Pending Payments & Pending Requests) */}
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Pending Payments */}
           <div
             onClick={() => setSelectedMetricTrend("payments")}
@@ -762,7 +775,7 @@ export default function AdminDashboardPage() {
             </span>
           </div>
 
-          {/* 5 Grid Cards */}
+          {/* 6 Grid Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
             
             {/* 1. Farmers */}
@@ -864,7 +877,7 @@ export default function AdminDashboardPage() {
               className="bg-white rounded-xl p-4 border border-[#E7E2D2] shadow-2xs hover:border-[#E11D48] hover:shadow-sm transition-all flex items-center justify-between group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#FEE2E2] text-[#E11D48] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-[#FFE4E6] text-[#E11D48] flex items-center justify-center">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -880,6 +893,27 @@ export default function AdminDashboardPage() {
 
           </div>
 
+          {/* AI Insights Full-Width Banner */}
+          <div
+            onClick={() => setShowAIModal(true)}
+            className="w-full bg-gradient-to-r from-[#FAF5FF] via-[#F3E8FF] to-[#EDE9FE] border border-[#DDD6FE] rounded-xl p-4 flex items-center justify-between hover:shadow-md transition cursor-pointer mt-1"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-full bg-[#8B5CF6] text-white flex items-center justify-center shadow-xs">
+                <span className="text-lg">💡</span>
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h4 className="font-bold text-sm text-[#4C1D95]">AI Insights</h4>
+                  <span className="bg-[#8B5CF6] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    New
+                  </span>
+                </div>
+                <p className="text-xs text-[#6D28D9]">Get smart insights & recommendations</p>
+              </div>
+            </div>
+            <span className="text-[#8B5CF6] font-bold text-lg pr-2">ΓÇ║</span>
+          </div>
         </section>
 
         {/* ================= 5. AI PROCUREMENT ASSISTANT & RECENT ACTIVITY ================= */}
@@ -918,13 +952,7 @@ export default function AdminDashboardPage() {
                         <div className="h-3 bg-gray-200 rounded w-1/2"></div>
                       </div>
                     </div>
-                    <div className="animate-pulse flex items-start gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100">
-                      <div className="w-8 h-8 rounded-full bg-gray-200 shrink-0"></div>
-                      <div className="space-y-2 w-full pt-1">
-                        <div className="h-3 bg-gray-200 rounded w-3/4"></div>
-                        <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                      </div>
-                    </div>
+
                     <div className="animate-pulse flex items-start gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100">
                       <div className="w-8 h-8 rounded-full bg-gray-200 shrink-0"></div>
                       <div className="space-y-2 w-full pt-1">
@@ -933,29 +961,30 @@ export default function AdminDashboardPage() {
                       </div>
                     </div>
                   </>
-                ) : aiInsights.length > 0 ? (
+                ) : (
                   aiInsights.slice(0, 3).map((insight) => (
-                    <div key={insight.id} className={`flex items-start gap-3 p-3 rounded-xl ${insight.colorStyle}`}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-sm font-bold ${insight.iconBg}`}>
+                    <div
+                      key={insight.id}
+                      className={`flex items-start gap-3 p-3 rounded-xl ${insight.colorStyle}`}
+                    >
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${insight.iconBg}`}
+                      >
                         {insight.icon}
                       </div>
+
                       <div className="text-xs">
                         <p className={`font-bold ${insight.titleColor}`}>
                           {insight.title}
                         </p>
-                        <p className={`${insight.descColor} mt-0.5`}>
+                        <p className={`mt-0.5 ${insight.descColor}`}>
                           {insight.desc}
                         </p>
                       </div>
                     </div>
                   ))
-                ) : (
-                  <div className="p-4 text-center text-gray-500 text-xs">
-                    Insufficient data to generate insights at this time.
-                  </div>
                 )}
               </div>
-            </div>
 
             {/* Bottom Button */}
             <button
@@ -967,6 +996,7 @@ export default function AdminDashboardPage() {
               <span><ArrowRightIcon className="w-4 h-4 inline" /></span>
             </button>
           </div>
+        </div>  
 
           {/* Right Column: Recent Activity */}
           <div className="bg-white rounded-2xl p-6 border border-[#E7E2D2] shadow-xs flex flex-col justify-between">
@@ -1305,7 +1335,92 @@ export default function AdminDashboardPage() {
           </div>
         )}
       </AnimatePresence>
+        
+      {/* 2. AI INSIGHTS MODAL */}
+      <AnimatePresence>
+        {showAIModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-white rounded-2xl p-6 max-w-lg w-full shadow-2xl border border-gray-100"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">🤖</span>
 
+                  <h3 className="text-lg font-bold text-[#344E06] font-oldenburg">
+                    AI Procurement Insights
+                  </h3>
+                </div>
+
+                <button
+                  onClick={() => setShowAIModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-lg cursor-pointer"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Insights */}
+              <div className="py-4 space-y-3.5 text-xs text-gray-700">
+
+                {/* Congestion Alert */}
+                <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200">
+                  <h5 className="font-bold text-amber-900 flex items-center gap-1.5">
+                    <span>⚠️</span>
+                    Congestion Alert: Mandi Centre B
+                  </h5>
+
+                  <p className="mt-1 text-amber-800">
+                    Expected arrival velocity between 11:30 AM and 2:30 PM is
+                    42 vehicles/hr against a throughput capacity of 28. Recommend
+                    enabling automated diversion to Centre C.
+                  </p>
+                </div>
+
+                {/* Demand Trend */}
+                <div className="p-3.5 rounded-xl bg-green-50/80 border border-green-200">
+                  <h5 className="font-bold text-green-900 flex items-center gap-1.5">
+                    <span>📈</span>
+                    Demand Trend: Potato Harvest Season
+                  </h5>
+
+                  <p className="mt-1 text-green-800">
+                    Procurement volume is outpacing warehouse intake by 18%.
+                    Quality inspection automated rejection rate is at 1.4%
+                    (healthy range).
+                  </p>
+                </div>
+
+                {/* Payments */}
+                <div className="p-3.5 rounded-xl bg-blue-50/80 border border-blue-200">
+                  <h5 className="font-bold text-blue-900 flex items-center gap-1.5">
+                    <span>💳</span>
+                    Auto-Reconciliation of 14 Pending Payments
+                  </h5>
+
+                  <p className="mt-1 text-blue-800">
+                    Aadhaar-seeded bank account validations completed for 12 out of
+                    14 accounts. Batch payout release ready for one-click approval.
+                  </p>
+                </div>
+
+              </div>
+
+              {/* Done Button */}
+              <button
+                onClick={() => setShowAIModal(false)}
+                className="w-full bg-[#344E06] text-white py-2.5 rounded-xl font-bold text-xs hover:bg-[#2A3E05] transition cursor-pointer"
+              >
+                Done
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>  
 
       {/* 3. TOKENS MODAL */}
       <AnimatePresence>
@@ -1402,55 +1517,48 @@ export default function AdminDashboardPage() {
               </div>
 
               <div className="py-4 space-y-3 text-xs max-h-80 overflow-y-auto pr-1">
-                <div className="flex items-center justify-between p-3 bg-amber-50 rounded-lg border border-amber-100">
-                  <div>
-                    <span className="font-bold text-gray-800">Ramesh Singh</span>
-                    <p className="text-[11px] text-gray-500">Mandi Slot Reschedule &bull; New time: 3:00 PM today</p>
+                {requestsList.map((req) => (
+                  <div
+                    key={req.id}
+                    className="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-100"
+                  >
+                    <div>
+                      <span className="font-bold text-gray-800">
+                        {req.name}
+                      </span>
+
+                      <p className="text-[11px] text-gray-500">
+                        {req.desc} &bull; {req.time}
+                      </p>
+                    </div>
+
+                    {req.status === "pending" ? (
+                      <div className="flex gap-1.5">
+                        <button
+                          onClick={() => handleApproveRequest(req.id)}
+                          className="px-2.5 py-1 bg-[#344E06] hover:bg-[#283C04] text-white font-semibold rounded text-[11px] transition cursor-pointer"
+                        >
+                          Approve
+                        </button>
+
+                        <button
+                          onClick={() => handleDeclineRequest(req.id)}
+                          className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded text-[11px] transition cursor-pointer"
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    ) : req.status === "approved" ? (
+                      <span className="text-green-700 font-bold bg-green-100 px-2 py-0.5 rounded text-[11px]">
+                        ✓ Approved
+                      </span>
+                    ) : (
+                      <span className="text-red-700 font-bold bg-red-100 px-2 py-0.5 rounded text-[11px]">
+                        ✕ Declined
+                      </span>
+                    )}
                   </div>
-                  <span className="text-amber-700 font-bold bg-amber-200 px-2 py-0.5 rounded text-[10px]">Pending</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-100">
-                  <div>
-                    <span className="font-bold text-gray-800">Vikram Yadav</span>
-                    <p className="text-[11px] text-gray-500">New Farmer Registration &bull; KCC verification pending</p>
-                  </div>
-                  <span className="text-blue-700 font-bold bg-blue-200 px-2 py-0.5 rounded text-[10px]">Pending</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-100">
-                  <div>
-                    <span className="font-bold text-gray-800">Gopal Roy</span>
-                    <p className="text-[11px] text-gray-500">Weight Discrepancy Query &bull; Centre A Weighbridge #2</p>
-                  </div>
-                  <span className="text-red-700 font-bold bg-red-200 px-2 py-0.5 rounded text-[10px]">Urgent</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <span className="font-bold text-gray-800">Suresh Patel</span>
-                    <p className="text-[11px] text-gray-500">Slot Reschedule &bull; Requested: Tomorrow 10 AM</p>
-                  </div>
-                  <span className="text-amber-700 font-bold bg-amber-200 px-2 py-0.5 rounded text-[10px]">Pending</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <span className="font-bold text-gray-800">Anjali Devi</span>
-                    <p className="text-[11px] text-gray-500">New Farmer Registration &bull; Aadhaar verification</p>
-                  </div>
-                  <span className="text-blue-700 font-bold bg-blue-200 px-2 py-0.5 rounded text-[10px]">Pending</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <span className="font-bold text-gray-800">Manoj Kumar</span>
-                    <p className="text-[11px] text-gray-500">Slot Reschedule &bull; Requested: Today 5 PM</p>
-                  </div>
-                  <span className="text-amber-700 font-bold bg-amber-200 px-2 py-0.5 rounded text-[10px]">Pending</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <span className="font-bold text-gray-800">Priya Sharma</span>
-                    <p className="text-[11px] text-gray-500">New Farmer Registration &bull; KYC submitted</p>
-                  </div>
-                  <span className="text-blue-700 font-bold bg-blue-200 px-2 py-0.5 rounded text-[10px]">Pending</span>
-                </div>
+                ))}
               </div>
 
               <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
