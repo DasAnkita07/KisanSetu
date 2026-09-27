@@ -15,7 +15,7 @@ export default function BookingQR() {
   const [booking, setBooking] = useState<BookingData | null>(null);
 
   useEffect(() => {
-    const storedBooking = localStorage.getItem("kisansetu_booking");
+    const storedBooking = localStorage.getItem("KrishiSangam_booking");
 
     if (storedBooking) {
       try {
@@ -49,10 +49,10 @@ export default function BookingQR() {
           {/* QR Code Box */}
           <div className="bg-white p-6 rounded-2xl border border-[#E9DDBD] flex items-center justify-center">
             <QRCodeCanvas
-              value={booking.uniqueId}
-              size={160}
+              value={JSON.stringify(booking)}
+              size={150}
               level="H"
-              includeMargin
+              marginSize={4}
             />
           </div>
 

@@ -11,7 +11,7 @@ interface Message {
 
 export default function CropAssistantPage() {
   const [messages, setMessages] = useState<Message[]>([
-    { id: 'msg1', sender: 'ai', text: 'Hello! I am your KisanSetu AI Crop Assistant. Ask me anything about crop management, diseases, fertilizers, or market trends.' }
+    { id: 'msg1', sender: 'ai', text: 'Hello! I am your KrishiSangam AI Crop Assistant. Ask me anything about crop management, diseases, fertilizers, or market trends.' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);

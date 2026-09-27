@@ -14,7 +14,7 @@ const features = [
   "Instant and transparent payouts",
 ];
 
-export default function KisanSetuOnboarding() {
+export default function KrishiSangamOnboarding() {
   // Step 1: Logo only (0.0s - 1.0s)
   // Step 2: Logo + Title + Tagline (1.0s - 2.0s)
   // Step 3: Green curtain drops to reveal Onboarding UI (2.0s+)
@@ -55,21 +55,29 @@ export default function KisanSetuOnboarding() {
       {/* ---------------- PAGE 3 BACKGROUND SKETCH & HEADER ---------------- */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <img
-          src="/bgsketch.png"
+          src="/farm.jpg"
           alt="Background Sketch"
-          className="w-full h-full object-cover object-center opacity-70 mix-blend-multiply"
+          className="w-full h-full object-cover object-center opacity-90 mix-blend-multiply"
         />
       </div>
 
       {step === 3 && (
-        <motion.img
-          src="/onboardingFarmer.png"
-          alt="Farmer Illustration"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-          className="absolute bottom-[7vh] left-1/2 -translate-x-1/2 w-72 md:w-72 object-contain drop-shadow-lg pointer-events-none z-10 origin-bottom"
-        />
+        <div className="absolute inset-x-0 bottom-[99px] top-[220px] flex items-end justify-center pointer-events-none z-10">
+          <motion.img
+            src="/introfarmer.png"
+            alt="Farmer Illustration"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            className="
+              h-full
+              w-auto
+              object-contain
+              object-bottom
+              drop-shadow-lg
+            "
+          />
+        </div>
       )}
 
       {/* Page 3 Header Section (Reveals as curtain drops) */}
@@ -81,7 +89,7 @@ export default function KisanSetuOnboarding() {
       >
         <img
           src="/logoBrown.svg"
-          alt="KisanSetu Logo"
+          alt="KrishiSangam Logo"
           className="w-11 h-11 md:w-17 md:h-17 object-contain"
         />
 
@@ -89,7 +97,7 @@ export default function KisanSetuOnboarding() {
           style={{ fontFamily: "var(--font-oldenburg)" }}
           className="text-2xl md:text-3xl text-[#351903]"
         >
-          KisanSetu
+          KrishiSangam
         </h1>
 
         <p
@@ -104,7 +112,7 @@ export default function KisanSetuOnboarding() {
           style={{ fontFamily: "var(--font-onest)" }}
           className="mt-10 md:mt-7 text-slate-800 text-base sm:text-lg md:text-xl sm:px-26 text-center shrink-0 flex flex-col items-center md:whitespace-nowrap"
         >
-          <span>KisanSetu is a smart digital platform that eliminates long mandi queues with </span>
+          <span>KrishiSangam is a smart digital platform that eliminates long mandi queues with </span>
 
           <div className="inline-flex relative">
             <AnimatePresence mode="wait">
@@ -148,7 +156,7 @@ export default function KisanSetuOnboarding() {
               {/* Page 1 Logo */}
               <motion.img
                 src="/mainLogo.svg"
-                alt="KisanSetu Logo"
+                alt="KrishiSangam Logo"
                 initial={{ scale: 2.0, opacity: 0, y: 0 }}
                 animate={{
                   scale: step === 2 ? 1.0 : 2.0,
@@ -175,7 +183,7 @@ export default function KisanSetuOnboarding() {
                     style={{ fontFamily: "var(--font-oldenburg)" }}
                     className="text-3xl md:text-5xl text-white"
                   >
-                    KisanSetu
+                    KrishiSangam
                   </h1>
                   <p
                     style={{ fontFamily: "var(--font-onest)" }}
