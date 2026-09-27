@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; 
+import { BarChartIcon, UsersIcon, BuildingOfficeIcon, TicketIcon, WheatIcon, CreditCardIcon, DocumentTextIcon, ShieldCheckIcon, PresentationChartLineIcon, Cog6ToothIcon, BellIcon, ArrowRightIcon, ArrowLeftIcon, CheckCircleIcon, ExclamationTriangleIcon, XMarkIcon } from '../components/Icons';
+
 
 interface QueueItem {
   token: string;
@@ -34,7 +36,42 @@ const timeSlots = [
 ];
 
 export default function QueueSlotManagementPage() {
+
+  const [adminRole, setAdminRole] = useState("Super Admin");
+  const [adminScope, setAdminScope] = useState("All");
+
+  useEffect(() => {
+    const storedAdminId = localStorage.getItem("kisanSetu_adminId") || "SA-100";
+    const idUpper = storedAdminId.toUpperCase();
+    
+    if (idUpper.startsWith("SA") || idUpper.startsWith("SUPER")) {
+      setAdminRole("Super Admin");
+      setAdminScope("All");
+    } else if (idUpper.startsWith("ST")) {
+      setAdminRole("State-level Admin");
+      setAdminScope("State: " + idUpper.substring(3));
+    } else if (idUpper.startsWith("DT")) {
+      setAdminRole("District-level Admin");
+      setAdminScope("District: " + idUpper.substring(3));
+    } else if (idUpper.startsWith("PC") || idUpper.startsWith("CENTRE")) {
+      setAdminRole("Procurement Centre-level Admin");
+      setAdminScope("Centre: " + idUpper.substring(3));
+    } else {
+      setAdminRole("Admin");
+      setAdminScope(idUpper);
+    }
+  }, []);
+
   const [queue, setQueue] = useState<QueueItem[]>(initialQueue);
+  useEffect(() => {
+    let filtered = [...initialQueue];
+    if (adminScope.startsWith("Centre: ")) {
+       const centreCode = adminScope.replace("Centre: ", "");
+       filtered = initialQueue.slice(0, 3);
+    }
+    setQueue(filtered);
+  }, [adminScope]);
+
   const [currentServingIndex, setCurrentServingIndex] = useState(0);
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedMandi, setSelectedMandi] = useState("Centre A - Burdwan Mandi");
@@ -56,7 +93,7 @@ export default function QueueSlotManagementPage() {
           item.token === nextWaiting.token ? { ...item, status: "At Weighbridge" } : item
         )
       );
-      setAlertBanner(`📢 Called Token ${nextWaiting.token} (${nextWaiting.farmer}) to Weighbridge!`);
+      setAlertBanner(` Called Token ${nextWaiting.token} (${nextWaiting.farmer}) to Weighbridge!`);
       setTimeout(() => setAlertBanner(null), 3500);
     } else {
       setAlertBanner("No more waiting vehicles in current queue!");
@@ -122,9 +159,7 @@ export default function QueueSlotManagementPage() {
           <Link
             href="/login/admin/dashboard"
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition text-sm cursor-pointer"
-          >
-            ←
-          </Link>
+          ><ArrowLeftIcon className="w-5 h-5 inline" /></Link>
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-xl font-bold font-oldenburg">Live Queue &amp; Slot Management</h1>
@@ -165,7 +200,7 @@ export default function QueueSlotManagementPage() {
             className="p-3 bg-[#EAF3D8] border border-[#344E06]/30 text-[#344E06] text-xs font-bold rounded-xl flex items-center justify-between shadow-xs"
           >
             <span>{alertBanner}</span>
-            <button onClick={() => setAlertBanner(null)} className="text-gray-500 hover:text-black">✕</button>
+            <button onClick={() => setAlertBanner(null)} className="text-gray-500 hover:text-black"><XMarkIcon className="w-4 h-4 inline" /></button>
           </motion.div>
         )}
 
@@ -178,7 +213,7 @@ export default function QueueSlotManagementPage() {
               <p className="text-xs font-medium text-gray-600 mt-0.5">{currentToken.farmer}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-[#EAF3D8] text-[#344E06] flex items-center justify-center text-xl">
-              🎟️
+              <TicketIcon className="w-5 h-5 inline" />
             </div>
           </div>
 
@@ -191,7 +226,7 @@ export default function QueueSlotManagementPage() {
               <p className="text-xs text-blue-700 font-semibold mt-0.5">Active on bays</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-[#E0F2FE] text-[#0284C7] flex items-center justify-center text-xl">
-              ⚖️
+              
             </div>
           </div>
 
@@ -204,7 +239,7 @@ export default function QueueSlotManagementPage() {
               <p className="text-xs text-amber-700 font-semibold mt-0.5">Vehicles staged outside</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-[#FEF3C7] text-[#D97706] flex items-center justify-center text-xl">
-              ⏳
+              
             </div>
           </div>
 
@@ -215,7 +250,7 @@ export default function QueueSlotManagementPage() {
               <p className="text-xs text-green-700 font-semibold mt-0.5">Below 15m threshold</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-[#DCFCE7] text-[#16A34A] flex items-center justify-center text-xl">
-              ⚡
+              
             </div>
           </div>
         </div>
@@ -242,13 +277,13 @@ export default function QueueSlotManagementPage() {
               onClick={handleCallNext}
               className="bg-[#344E06] hover:bg-[#283C04] text-white px-5 py-2.5 rounded-xl font-bold text-xs tracking-wide transition flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
-              <span>📢</span> Call Next Waiting
+              <span></span> Call Next Waiting
             </button>
             <button
               onClick={() => handleAdvanceStatus(currentToken.token)}
               className="bg-white hover:bg-gray-50 text-[#344E06] border border-[#CAD8B2] px-4 py-2.5 rounded-xl font-bold text-xs transition cursor-pointer shadow-2xs"
             >
-              ✓ Advance Status
+              <CheckCircleIcon className="w-4 h-4 inline" /> Advance Status
             </button>
             <button
               onClick={() => setShowEmergencyModal(true)}
@@ -339,7 +374,7 @@ export default function QueueSlotManagementPage() {
                               onClick={() => handleAdvanceStatus(item.token)}
                               className="px-2 py-1 bg-[#344E06] hover:bg-[#283C04] text-white rounded text-[11px] font-semibold transition cursor-pointer"
                             >
-                              Advance ›
+                              Advance <ArrowRightIcon className="w-4 h-4 inline" />
                             </button>
                             <button
                               onClick={() => handleSkipToken(item.token)}
@@ -350,7 +385,7 @@ export default function QueueSlotManagementPage() {
                           </>
                         )}
                         {item.status === "Completed" && (
-                          <span className="text-xs text-gray-400 font-medium">✓ Done</span>
+                          <span className="text-xs text-gray-400 font-medium"><CheckCircleIcon className="w-4 h-4 inline" /> Done</span>
                         )}
                       </td>
                     </tr>
@@ -409,7 +444,7 @@ export default function QueueSlotManagementPage() {
                   }}
                   className="w-full py-2.5 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-xs transition cursor-pointer"
                 >
-                  ⏸️ Temporarily Pause Slot Admissions
+                   Temporarily Pause Slot Admissions
                 </button>
               </div>
             </div>
@@ -430,7 +465,7 @@ export default function QueueSlotManagementPage() {
             >
               <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl">🚨</span>
+                  <span className="text-xl"><ExclamationTriangleIcon className="w-5 h-5 inline text-red-500" /></span>
                   <h3 className="text-base font-bold text-[#1F2937] font-oldenburg">
                     Generate Emergency Fast-Track Token
                   </h3>
@@ -439,7 +474,7 @@ export default function QueueSlotManagementPage() {
                   onClick={() => setShowEmergencyModal(false)}
                   className="text-gray-400 hover:text-gray-600 text-lg cursor-pointer"
                 >
-                  ✕
+                  <XMarkIcon className="w-4 h-4 inline" />
                 </button>
               </div>
 

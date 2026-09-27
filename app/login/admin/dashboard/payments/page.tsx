@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { BarChartIcon, UsersIcon, BuildingOfficeIcon, TicketIcon, WheatIcon, CreditCardIcon, DocumentTextIcon, ShieldCheckIcon, PresentationChartLineIcon, Cog6ToothIcon, BellIcon, ArrowRightIcon, ArrowLeftIcon, CheckCircleIcon, ExclamationTriangleIcon, XMarkIcon } from "../components/Icons";
 
 const initialPayments = [
   { id: "PAY-981", farmer: "Rajesh Kumar", amount: "₹ 42,500", crop: "Wheat (18 Q)", bank: "SBI ···· 4091", date: "14 Apr 2026", status: "Pending Approval" },
@@ -13,7 +14,41 @@ const initialPayments = [
 ];
 
 export default function PaymentsManagementPage() {
+
+  const [adminRole, setAdminRole] = useState("Super Admin");
+  const [adminScope, setAdminScope] = useState("All");
+
+  useEffect(() => {
+    const storedAdminId = localStorage.getItem("kisanSetu_adminId") || "SA-100";
+    const idUpper = storedAdminId.toUpperCase();
+    
+    if (idUpper.startsWith("SA") || idUpper.startsWith("SUPER")) {
+      setAdminRole("Super Admin");
+      setAdminScope("All");
+    } else if (idUpper.startsWith("ST")) {
+      setAdminRole("State-level Admin");
+      setAdminScope("State: " + idUpper.substring(3));
+    } else if (idUpper.startsWith("DT")) {
+      setAdminRole("District-level Admin");
+      setAdminScope("District: " + idUpper.substring(3));
+    } else if (idUpper.startsWith("PC") || idUpper.startsWith("CENTRE")) {
+      setAdminRole("Procurement Centre-level Admin");
+      setAdminScope("Centre: " + idUpper.substring(3));
+    } else {
+      setAdminRole("Admin");
+      setAdminScope(idUpper);
+    }
+  }, []);
+
   const [payments, setPayments] = useState(initialPayments);
+  useEffect(() => {
+    let filtered = [...initialPayments];
+    if (adminScope.startsWith("Centre: ")) {
+       filtered = initialPayments.slice(0, 1);
+    }
+    setPayments(filtered);
+  }, [adminScope]);
+
   const [filter, setFilter] = useState("All");
 
   const handleApprove = (id: string) => {
@@ -37,12 +72,10 @@ export default function PaymentsManagementPage() {
           <Link
             href="/login/admin/dashboard"
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition text-sm"
-          >
-            ←
-          </Link>
+          ><ArrowLeftIcon className="w-5 h-5 inline" /></Link>
           <div>
             <h1 className="text-xl font-bold font-oldenburg">Payments & Dues</h1>
-            <p className="text-[11px] text-[#E9DF87]">Direct Benefit Transfer (DBT) approval & bank disbursals</p>
+            <p className="text-[11px] text-[#E9DF87]">Manage payments and disbursals</p>
           </div>
         </div>
         <Link
@@ -69,7 +102,7 @@ export default function PaymentsManagementPage() {
           <div className="bg-white p-5 rounded-2xl border border-[#E7E2D2] shadow-xs">
             <p className="text-xs text-gray-500 font-semibold uppercase">Cumulative Total (Month)</p>
             <h3 className="text-3xl font-bold text-[#1F2937] font-oldenburg mt-1">₹ 48.6 Lakh</h3>
-            <span className="text-xs text-gray-500">100% DBT Aadhaar Seeded</span>
+            <span className="text-xs text-gray-500">All accounts verified</span>
           </div>
         </div>
 
@@ -129,10 +162,10 @@ export default function PaymentsManagementPage() {
                         onClick={() => handleApprove(item.id)}
                         className="bg-[#344E06] hover:bg-[#283C04] text-white px-3 py-1 rounded-lg text-xs font-semibold transition cursor-pointer"
                       >
-                        Approve DBT
+                        Approve Payment
                       </button>
                     ) : (
-                      <span className="text-xs text-gray-400 font-medium">✓ Settled</span>
+                      <span className="text-xs text-gray-400 font-medium"><CheckCircleIcon className="w-4 h-4 inline" /> Settled</span>
                     )}
                   </td>
                 </tr>

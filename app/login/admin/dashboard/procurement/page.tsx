@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; 
+import { BarChartIcon, UsersIcon, BuildingOfficeIcon, TicketIcon, WheatIcon, CreditCardIcon, DocumentTextIcon, ShieldCheckIcon, PresentationChartLineIcon, Cog6ToothIcon, BellIcon, ArrowRightIcon, ArrowLeftIcon, CheckCircleIcon, ExclamationTriangleIcon, XMarkIcon } from '../components/Icons';
+
 import { Html5Qrcode } from "html5-qrcode";
 
 interface ProcurementItem {
@@ -71,6 +73,32 @@ const initialProcurementLog: ProcurementItem[] = [
 ];
 
 export default function ProcurementManagementPage() {
+
+  const [adminRole, setAdminRole] = useState("Super Admin");
+  const [adminScope, setAdminScope] = useState("All");
+
+  useEffect(() => {
+    const storedAdminId = localStorage.getItem("kisanSetu_adminId") || "SA-100";
+    const idUpper = storedAdminId.toUpperCase();
+    
+    if (idUpper.startsWith("SA") || idUpper.startsWith("SUPER")) {
+      setAdminRole("Super Admin");
+      setAdminScope("All");
+    } else if (idUpper.startsWith("ST")) {
+      setAdminRole("State-level Admin");
+      setAdminScope("State: " + idUpper.substring(3));
+    } else if (idUpper.startsWith("DT")) {
+      setAdminRole("District-level Admin");
+      setAdminScope("District: " + idUpper.substring(3));
+    } else if (idUpper.startsWith("PC") || idUpper.startsWith("CENTRE")) {
+      setAdminRole("Procurement Centre-level Admin");
+      setAdminScope("Centre: " + idUpper.substring(3));
+    } else {
+      setAdminRole("Admin");
+      setAdminScope(idUpper);
+    }
+  }, []);
+
   const [logs, setLogs] = useState<ProcurementItem[]>(
     initialProcurementLog
   );
@@ -369,9 +397,7 @@ export default function ProcurementManagementPage() {
           <Link
             href="/login/admin/dashboard"
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition text-sm"
-          >
-            ←
-          </Link>
+          ><ArrowLeftIcon className="w-5 h-5 inline" /></Link>
 
           <div>
             <h1 className="text-xl font-bold font-oldenburg">
@@ -399,7 +425,7 @@ export default function ProcurementManagementPage() {
             }}
             className="text-xs bg-[#E9DDBD] hover:bg-white text-[#344E06] font-bold px-3 py-1.5 rounded-lg transition cursor-pointer"
           >
-            📷 Scan Farmer QR
+             Scan Farmer QR
           </button>
 
           {/* MANUAL */}
@@ -437,7 +463,7 @@ export default function ProcurementManagementPage() {
             </h3>
 
             <span className="text-xs text-green-700 font-semibold">
-              ↗ +22% from yesterday
+              <ArrowRightIcon className="w-4 h-4 inline" /> +22% from yesterday
             </span>
 
           </div>
@@ -602,7 +628,7 @@ export default function ProcurementManagementPage() {
                       }
                       className="text-[#344E06] hover:underline font-semibold text-xs cursor-pointer flex items-center gap-1"
                     >
-                      <span>📄</span>
+                      <span><DocumentTextIcon className="w-5 h-5 inline" /></span>
                       Slip
                     </button>
 
@@ -665,7 +691,7 @@ export default function ProcurementManagementPage() {
                   onClick={closeQRScanner}
                   className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500 text-lg cursor-pointer"
                 >
-                  ✕
+                  <XMarkIcon className="w-4 h-4 inline" />
                 </button>
 
               </div>
@@ -681,7 +707,7 @@ export default function ProcurementManagementPage() {
                     <div className="text-center mb-4">
 
                       <div className="text-3xl">
-                        ✅
+                        <CheckCircleIcon className="w-5 h-5 inline text-green-500" />
                       </div>
 
                       <h4 className="font-bold text-[#344E06]">
@@ -807,7 +833,7 @@ export default function ProcurementManagementPage() {
                       onClick={handleUseBooking}
                       className="flex-1 py-2.5 rounded-xl bg-[#344E06] text-white font-bold hover:bg-[#283C04] cursor-pointer text-xs"
                     >
-                      Use Booking →
+                      Use Booking <ArrowRightIcon className="w-5 h-5 inline" />
                     </button>
 
                   </div>
@@ -947,7 +973,7 @@ export default function ProcurementManagementPage() {
                   }
                   className="text-gray-400 hover:text-gray-600 text-lg cursor-pointer"
                 >
-                  ✕
+                  <XMarkIcon className="w-4 h-4 inline" />
                 </button>
 
               </div>
@@ -1258,7 +1284,7 @@ export default function ProcurementManagementPage() {
               <div className="text-center pb-3 border-b">
 
                 <span className="text-xl">
-                  🌾
+                  <WheatIcon className="w-5 h-5 inline" />
                 </span>
 
                 <h3 className="text-lg font-bold text-[#344E06] font-oldenburg">
@@ -1366,7 +1392,7 @@ export default function ProcurementManagementPage() {
                   }
                   className="flex-1 py-2.5 rounded-xl bg-[#344E06] text-white font-bold"
                 >
-                  🖨️ Print Slip
+                   Print Slip
                 </button>
 
               </div>
