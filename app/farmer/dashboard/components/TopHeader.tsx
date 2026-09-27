@@ -29,13 +29,13 @@ export default function TopHeader({
 
           <img
             src="/mainLogo.svg"
-            alt="KisanSetu"
+            alt="KrishiSangam"
             className="w-10 h-10"
           />
 
           <div>
             <h1 className="font-oldenburg text-white text-xl sm:text-2xl tracking-wide leading-none">
-              KisanSetu
+              KrishiSangam
             </h1>
 
             <p className="font-onest text-[9px] sm:text-[10px] text-[#F0E383] mt-1">

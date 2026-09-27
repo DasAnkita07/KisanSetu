@@ -42,7 +42,7 @@ export default function SlotBookingPage() {
 
     // Save QR booking data
     localStorage.setItem(
-      'kisansetu_booking',
+      'KrishiSangam_booking',
       JSON.stringify({
         uniqueId,
         crop: crops.find(c => c.id === selectedCrop)?.name,

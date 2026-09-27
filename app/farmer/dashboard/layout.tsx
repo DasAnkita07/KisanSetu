@@ -61,7 +61,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
               <footer className="mt-12 py-6 border-t border-[#D5D0BD] text-center">
                 <span className="font-onest text-xs text-[#351903]/60">
-                  © {new Date().getFullYear()} KisanSetu - The Digital Bridge for Every Farmer
+                  © {new Date().getFullYear()} KrishiSangam - The Digital Bridge for Every Farmer
                 </span>
               </footer>
             </main>

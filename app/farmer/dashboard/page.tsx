@@ -206,7 +206,7 @@ export default function DashboardOverview() {
               <span className="text-2xl">🎙️</span>
               <h3 className="font-oldenburg text-xl text-[#351903]">Voice Assistant</h3>
             </div>
-            <p className="font-onest text-sm text-[#351903]/70 mb-6 relative z-10">Talk to KisanSetu</p>
+            <p className="font-onest text-sm text-[#351903]/70 mb-6 relative z-10">Talk to KrishiSangam</p>
             
             <div className="flex justify-center mb-6 relative z-10">
               <Link href="/farmer/dashboard/voice-assistant" className="w-16 h-16 rounded-full bg-[#365006] text-white flex items-center justify-center text-2xl shadow-lg hover:scale-110 hover:bg-[#2d4305] transition-all cursor-pointer">

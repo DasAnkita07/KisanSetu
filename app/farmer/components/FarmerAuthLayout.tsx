@@ -18,12 +18,12 @@ export default function FarmerAuthLayout({ children }: { children: React.ReactNo
           <Link href="/" className="flex items-center justify-center">
             <img
               src="/mainLogo.svg"
-              alt="KisanSetu"
+              alt="KrishiSangam"
               className="w-11 h-11 sm:w-14 sm:h-14"
             />
             <div className="ml-2">
               <h1 className="font-oldenburg text-white text-2xl sm:text-3xl leading-none">
-                KisanSetu
+                KrishiSangam
               </h1>
               <p className="font-onest text-[9px] md:text-[11px] text-[#F0E383] text-center">
                 The Digital Bridge for Every Farmer
@@ -78,7 +78,7 @@ export default function FarmerAuthLayout({ children }: { children: React.ReactNo
       {/* ================= FOOTER ================= */}
       <footer className="h-7 sm:h-8 bg-[#F0E383] border-t border-[#D8C867] flex items-center justify-between px-3 sm:px-5 shrink-0">
         <span className="font-onest text-[11px] md:text-[13px] text-[#351903]">
-          © KisanSetu
+          © KrishiSangam
         </span>
 
         <div className="flex gap-3 md:gap-5 font-onest text-[11px] md:text-[13px] text-[#351903]">

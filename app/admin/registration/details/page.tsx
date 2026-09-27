@@ -1,4 +1,4 @@
-//adminregistration1
+// adminregistration1
 "use client";
 
 import { useState } from "react";
@@ -8,58 +8,54 @@ export default function AdminRegistration1() {
   const router = useRouter();
 
   const [adminId, setAdminId] = useState("");
-  const [cardCode, setCardCode] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  const handleGetOtp = () => {
-    if (!mobileNumber || mobileNumber.length !== 10) {
-      setError("Please enter a valid 10-digit mobile number.");
-      return;
-    }
-
-    setError("");
-    alert("OTP sent successfully!");
-  };
-
   const handleContinue = () => {
-    if (!adminId || !cardCode || !mobileNumber || !otp) {
-      setError("Please fill in all the fields.");
+    // Admin ID validation
+    if (!adminId) {
+      setError("Please enter your Admin ID.");
       return;
     }
 
-    if (mobileNumber.length !== 10) {
-      setError("Please enter a valid 10-digit mobile number.");
+    // Email validation
+    if (!email) {
+      setError("Please enter your email address.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
       return;
     }
 
     setError("");
 
-    // Save the information temporarily for the next registration page
+    // Save information temporarily for the next registration page
     sessionStorage.setItem("adminId", adminId);
-    sessionStorage.setItem("cardCode", cardCode);
-    sessionStorage.setItem("mobileNumber", mobileNumber);
+    sessionStorage.setItem("email", email);
 
-    // Go to AdminRegistration2
+    // Go to Admin Registration Step 2
     router.push("/admin/registration/password");
   };
 
   return (
     <main className="min-h-screen w-full bg-[#F8F6ED] flex flex-col overflow-hidden">
-      
+
       {/* ================= HEADER ================= */}
       <header className="w-full bg-[#365006] rounded-b-md px-4 py-3 sm:px-6 sm:py-4">
         <div className="flex items-center justify-center">
           <img
             src="/mainLogo.svg"
-            alt="KisanSetu"
+            alt="KrishiSangam"
             className="w-11 h-11 sm:w-14 sm:h-14"
           />
 
           <div className="ml-2">
             <h1 className="font-oldenburg text-white text-2xl sm:text-3xl leading-none">
-              KisanSetu
+              KrishiSangam
             </h1>
 
             <p className="font-onest text-[9px] md:text-[11px] text-[#F0E383] text-center">
@@ -78,10 +74,13 @@ export default function AdminRegistration1() {
           backgroundPosition: "center",
         }}
       >
+
         {/* Login / Register Tabs */}
         <div className="w-full flex justify-center pt-5 sm:pt-7">
           <div className="flex border-b border-[#365006]">
+
             <button
+              type="button"
               onClick={() => router.push("/admin")}
               className="px-8 sm:px-12 pb-2 font-onest text-sm sm:text-base text-[#351903]"
             >
@@ -89,10 +88,12 @@ export default function AdminRegistration1() {
             </button>
 
             <button
+              type="button"
               className="px-8 sm:px-12 pb-2 font-onest text-sm sm:text-base font-semibold text-[#365006] border-b-4 border-[#365006]"
             >
               REGISTER
             </button>
+
           </div>
         </div>
 
@@ -113,7 +114,7 @@ export default function AdminRegistration1() {
 
             {/* Progress Indicator */}
             <div className="flex items-center justify-center mb-8">
-              
+
               <div className="w-9 h-9 rounded-full bg-[#365006] text-white flex items-center justify-center font-onest font-semibold text-sm">
                 1
               </div>
@@ -129,9 +130,10 @@ export default function AdminRegistration1() {
               <div className="w-9 h-9 rounded-full border-2 border-[#D5D0BD] text-[#999] flex items-center justify-center font-onest text-sm">
                 3
               </div>
+
             </div>
 
-            {/* Form */}
+            {/* ================= FORM ================= */}
             <div className="space-y-5">
 
               {/* Admin ID */}
@@ -149,67 +151,19 @@ export default function AdminRegistration1() {
                 />
               </div>
 
-              {/* Card Code */}
+              {/* Email */}
               <div>
                 <label className="block font-onest text-sm font-medium text-[#351903] mb-2">
-                  Card Code
+                  Email Address
                 </label>
 
                 <input
-                  type="text"
-                  value={cardCode}
-                  onChange={(e) => setCardCode(e.target.value)}
-                  placeholder="Enter Card Code"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
                   className="w-full h-12 rounded-md border border-[#C9C4B2] bg-white px-4 font-onest text-sm text-[#351903] outline-none focus:border-[#365006] focus:ring-1 focus:ring-[#365006]"
                 />
-              </div>
-
-              {/* Mobile Number */}
-              <div>
-                <label className="block font-onest text-sm font-medium text-[#351903] mb-2">
-                  Mobile Number
-                </label>
-
-                <input
-                  type="tel"
-                  value={mobileNumber}
-                  onChange={(e) =>
-                    setMobileNumber(
-                      e.target.value.replace(/\D/g, "").slice(0, 10)
-                    )
-                  }
-                  placeholder="Enter 10-digit mobile number"
-                  className="w-full h-12 rounded-md border border-[#C9C4B2] bg-white px-4 font-onest text-sm text-[#351903] outline-none focus:border-[#365006] focus:ring-1 focus:ring-[#365006]"
-                />
-              </div>
-
-              {/* OTP */}
-              <div>
-                <label className="block font-onest text-sm font-medium text-[#351903] mb-2">
-                  OTP
-                </label>
-
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={otp}
-                    onChange={(e) =>
-                      setOtp(
-                        e.target.value.replace(/\D/g, "").slice(0, 6)
-                      )
-                    }
-                    placeholder="Enter OTP"
-                    className="flex-1 min-w-0 h-12 rounded-md border border-[#C9C4B2] bg-white px-4 font-onest text-sm text-[#351903] outline-none focus:border-[#365006] focus:ring-1 focus:ring-[#365006]"
-                  />
-
-                  <button
-                    type="button"
-                    onClick={handleGetOtp}
-                    className="h-12 px-4 sm:px-5 rounded-md bg-[#351903] text-white font-onest text-xs sm:text-sm font-semibold hover:opacity-90 transition"
-                  >
-                    GET OTP
-                  </button>
-                </div>
               </div>
 
               {/* Error */}
@@ -232,21 +186,24 @@ export default function AdminRegistration1() {
               <p className="text-center font-onest text-sm text-[#351903]/70 pt-1">
                 Already registered?{" "}
                 <button
+                  type="button"
                   onClick={() => router.push("/admin")}
                   className="font-semibold text-[#365006] hover:underline"
                 >
                   Login
                 </button>
               </p>
+
             </div>
           </div>
         </section>
       </div>
-      
+
       {/* ================= FOOTER ================= */}
       <footer className="h-7 sm:h-8 bg-[#F0E383] border-t border-[#D8C867] flex items-center justify-between px-3 sm:px-5 shrink-0">
+
         <span className="font-onest text-[11px] md:text-[13px] text-[#351903]">
-          © KisanSetu
+          © KrishiSangam
         </span>
 
         <div className="flex gap-3 md:gap-5 font-onest text-[11px] md:text-[13px] text-[#351903]">
@@ -256,16 +213,31 @@ export default function AdminRegistration1() {
         </div>
 
         <div className="flex gap-2 md:gap-3 items-center">
-          <span className="text-[11px] md:text-[13px]">
-            <img src="/facebook-box.png" alt="Facebook" className="w-5 h-5 md:w-7 md:h-7 inline-block" />
+          <span>
+            <img
+              src="/facebook-box.png"
+              alt="Facebook"
+              className="w-5 h-5 md:w-7 md:h-7 inline-block"
+            />
           </span>
-          <span className="text-[11px] md:text-[13px]">
-            <img src="/instagram.png" alt="Instagram" className="w-5 h-5 md:w-7 md:h-7 inline-block" />
+
+          <span>
+            <img
+              src="/instagram.png"
+              alt="Instagram"
+              className="w-5 h-5 md:w-7 md:h-7 inline-block"
+            />
           </span>
-          <span className="text-[11px] md:text-[13px]">
-            <img src="/linkedin-box.png" alt="LinkedIn" className="w-5 h-5 md:w-7 md:h-7 inline-block" />
+
+          <span>
+            <img
+              src="/linkedin-box.png"
+              alt="LinkedIn"
+              className="w-5 h-5 md:w-7 md:h-7 inline-block"
+            />
           </span>
         </div>
+
       </footer>
     </main>
   );

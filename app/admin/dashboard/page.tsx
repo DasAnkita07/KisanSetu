@@ -163,13 +163,13 @@ export default function AdminDashboardPage() {
         <div className="flex items-center gap-3">
           <img
             src="/mainLogo.svg"
-            alt="KisanSetu"
+            alt="KrishiSangam"
             className="w-10 h-10 sm:w-11 sm:h-11 object-contain"
           />
           <div>
             <div className="flex items-center">
               <span className="text-xl tracking-tight text-white font-oldenburg">
-                KisanSetu
+                KrishiSangam
               </span>
             </div>
             <p className="text-[10px] sm:text-xs text-[#E9DF87] tracking-wide">
@@ -314,7 +314,7 @@ export default function AdminDashboardPage() {
                 >
                   <div className="px-4 py-2 border-b border-gray-100">
                     <p className="font-semibold text-gray-900">Mandi Administrator</p>
-                    <p className="text-gray-500 text-[11px]">admin@kisansetu.gov.in</p>
+                    <p className="text-gray-500 text-[11px]">admin@KrishiSangam.gov.in</p>
                   </div>
                   <button
                     onClick={() => { setShowHelpModal(true); setShowAdminMenu(false); }}
@@ -339,19 +339,19 @@ export default function AdminDashboardPage() {
       <section
         className="w-full min-h-[300px] sm:min-h-[360px] md:min-h-[420px] lg:min-h-[450px] relative overflow-hidden bg-cover bg-center border-b border-[#E2D5B5]"
           style={{
-            backgroundImage: "url('/adminDashboard.png')",
+            backgroundImage: "url('/dashboard.png')",
           }}
         >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-7 sm:py-9 flex flex-col md:flex-row md:items-center justify-between relative z-10 gap-4">
 
           {/* Welcome Text */}
           <div className="max-w-xl">
-            <h1 className="text-3xl md:text-5xl font-bold text-[#2A3E05] flex items-center gap-2 font-oldenburg tracking-tight mt-7 md:mt-24">
+            <h1 className="text-3xl md:text-5xl font-bold text-[#2A3E05] flex items-center gap-2 font-oldenburg tracking-tight mt-7 md:mt-11">
               Welcome, Admin <span className="inline-block animate-pulse">👋</span>
             </h1>
             <p className="text-[#556934] text-sm sm:text-base font-medium">
               {lang === "EN"
-                ? "Here's what's happening across KisanSetu today."
+                ? "Here's what's happening across KrishiSangam today."
                 : "यहाँ देखें आज किसानसेतु में क्या हो रहा है।"}
             </p>
 
@@ -988,7 +988,7 @@ export default function AdminDashboardPage() {
         {/* ================= 7. FOOTER ACTIONS ================= */}
         <footer className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500 font-medium">
-            © 2026 KisanSetu · Mandi Procurement Management Console
+            © 2026 KrishiSangam · Mandi Procurement Management Console
           </p>
 
           <div className="flex items-center gap-3">
@@ -1165,7 +1165,7 @@ export default function AdminDashboardPage() {
                 </div>
                 <div className="p-3 bg-[#FAF8F3] rounded-xl border border-[#E7E2D2]">
                   <p className="font-bold text-[#344E06]">Technical & Token Grievances</p>
-                  <p className="text-gray-700 text-sm font-semibold mt-0.5">support@kisansetu.gov.in</p>
+                  <p className="text-gray-700 text-sm font-semibold mt-0.5">support@KrishiSangam.gov.in</p>
                 </div>
               </div>
               <button

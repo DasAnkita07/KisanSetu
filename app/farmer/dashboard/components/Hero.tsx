@@ -21,18 +21,18 @@ export default function Hero() {
       <section
         className="w-full min-h-[200px] sm:min-h-[200px] md:min-h-[420px] lg:min-h-[450px] relative overflow-hidden bg-cover bg-[66%_center] md:bg-center border-b border-[#E2D5B5]"
           style={{
-            backgroundImage: "url('/farmerDashboard.png')",
+            backgroundImage: "url('/dashboard.png')",
           }}
         >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-7 sm:py-9 flex flex-col md:flex-row md:items-center justify-between relative z-10 gap-4">
 
           {/* Welcome Text */}
           <div className="max-w-xl">
-            <h1 className="text-lg md:text-4xl font-bold text-[#2A3E05] flex items-center gap-2 font-oldenburg tracking-tight mt-7 md:mt-24">
+            <h1 className="text-lg md:text-4xl font-bold text-[#2A3E05] flex items-center gap-2 font-oldenburg tracking-tight mt-7 md:mt-11">
               Welcome, Rajesh Kumar <span className="inline-block animate-pulse">👋</span>
             </h1>
             <p className="text-[#556934] text-xs sm:text-base font-medium">
-               "Here's what's happening across KisanSetu today."
+               "Here's what's happening across KrishiSangam today."
             </p>
 
             {/* Date & Time Pill */}

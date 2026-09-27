@@ -237,7 +237,7 @@ export default function ProcurementManagementPage() {
 
     const savedBooking =
       localStorage.getItem(
-        "kisansetu_booking"
+        "KrishiSangam_booking"
       );
 
     if (!savedBooking) {
@@ -1262,7 +1262,7 @@ export default function ProcurementManagementPage() {
                 </span>
 
                 <h3 className="text-lg font-bold text-[#344E06] font-oldenburg">
-                  KisanSetu Weighbridge Slip
+                  KrishiSangam Weighbridge Slip
                 </h3>
 
                 <p className="text-[11px] text-gray-500">

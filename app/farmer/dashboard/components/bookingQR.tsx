@@ -15,7 +15,7 @@ export default function BookingQR() {
   const [booking, setBooking] = useState<BookingData | null>(null);
 
   useEffect(() => {
-    const storedBooking = localStorage.getItem("kisansetu_booking");
+    const storedBooking = localStorage.getItem("KrishiSangam_booking");
 
     if (storedBooking) {
       try {

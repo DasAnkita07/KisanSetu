@@ -14,13 +14,13 @@ export default function AdminRegistration4() {
         <div className="flex items-center justify-center">
           <img
             src="/mainLogo.svg"
-            alt="KisanSetu"
+            alt="KrishiSangam"
             className="w-11 h-11 sm:w-14 sm:h-14"
           />
 
           <div className="ml-2">
             <h1 className="font-oldenburg text-white text-2xl sm:text-3xl leading-none">
-              KisanSetu
+              KrishiSangam
             </h1>
 
             <p className="font-onest text-[9px] md:text-[11px] text-[#F0E383] text-center">

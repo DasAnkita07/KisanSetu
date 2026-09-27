@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,27 +8,39 @@ import FormInput from "../components/FormInput";
 
 export default function FarmerLogin() {
   const router = useRouter();
+
   const [farmerId, setFarmerId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = () => {
-    if (!farmerId || !password) {
-      setError("Please enter your Farmer ID and Password.");
+    if (!farmerId) {
+      setError("Please enter your Farmer ID.");
       return;
     }
+
+    if (!password) {
+      setError("Please enter your password.");
+      return;
+    }
+
     setError("");
-    router.push("/farmer/dashboard"); // Assuming a farmer dashboard route exists or will exist
+
+    // Temporary frontend login.
+    // This will be replaced with backend authentication later.
+    router.push("/farmer/dashboard");
   };
 
   return (
     <FarmerAuthLayout>
       <div className="w-full max-w-md">
+
         {/* Heading */}
         <div className="text-center mb-8">
           <h2 className="font-oldenburg text-2xl sm:text-3xl text-[#351903]">
             Farmer Login
           </h2>
+
           <p className="font-onest text-sm md:text-md text-[#351903]/70">
             Login to manage your farm & procurement.
           </p>
@@ -35,6 +48,8 @@ export default function FarmerLogin() {
 
         {/* Form */}
         <div className="space-y-5">
+
+          {/* Farmer ID */}
           <FormInput
             label="Farmer ID"
             value={farmerId}
@@ -42,6 +57,7 @@ export default function FarmerLogin() {
             placeholder="Enter Farmer ID"
           />
 
+          {/* Password */}
           <FormInput
             label="Password"
             type="password"
@@ -76,15 +92,19 @@ export default function FarmerLogin() {
             LOGIN
           </button>
 
-          {/* Register Text */}
+          {/* Register */}
           <div className="text-center pt-2">
             <p className="font-onest text-sm text-[#351903]/70">
               Don&apos;t have an account?{" "}
-              <Link href="/farmer/register" className="font-semibold text-[#365006] hover:underline cursor-pointer">
+              <Link
+                href="/farmer/register"
+                className="font-semibold text-[#365006] hover:underline cursor-pointer"
+              >
                 Register
               </Link>
             </p>
           </div>
+
         </div>
       </div>
     </FarmerAuthLayout>
