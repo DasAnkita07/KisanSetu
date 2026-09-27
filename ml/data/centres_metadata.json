@@ -1,0 +1,122 @@
+[
+  {
+    "id": "C-01",
+    "name": "Centre A - Burdwan Mandi",
+    "district": "Purba Bardhaman",
+    "supervisor": "A. Sengupta",
+    "coordinates": {
+      "lat": 23.2324,
+      "lon": 87.8615
+    },
+    "capacity_mt": 80,
+    "current_intake_mt": 45,
+    "status": "Active",
+    "weighbridges": 3,
+    "diversion_enabled": false,
+    "supported_crops": ["Potato", "Paddy", "Wheat", "Mustard", "Maize"],
+    "facilities": ["Grain Silo", "Covered Shed", "Moisture Meter"],
+    "operating_hours": "08:00 AM - 06:00 PM",
+    "current_queue_count": 6,
+    "avg_processing_mins_per_ton": 6.5
+  },
+  {
+    "id": "C-02",
+    "name": "Centre B - Singur Agro Hub",
+    "district": "Hooghly",
+    "supervisor": "R. K. Verma",
+    "coordinates": {
+      "lat": 22.8122,
+      "lon": 88.2324
+    },
+    "capacity_mt": 100,
+    "current_intake_mt": 88,
+    "status": "Nearing Capacity",
+    "weighbridges": 4,
+    "diversion_enabled": true,
+    "supported_crops": ["Potato", "Mustard", "Paddy"],
+    "facilities": ["Cold Storage", "Covered Shed", "Quality Lab"],
+    "operating_hours": "08:00 AM - 06:00 PM",
+    "current_queue_count": 14,
+    "avg_processing_mins_per_ton": 5.2
+  },
+  {
+    "id": "C-03",
+    "name": "Centre C - Memari Procurement Depot",
+    "district": "Purba Bardhaman",
+    "supervisor": "P. Mukherjee",
+    "coordinates": {
+      "lat": 23.1848,
+      "lon": 88.1132
+    },
+    "capacity_mt": 60,
+    "current_intake_mt": 18,
+    "status": "Active",
+    "weighbridges": 2,
+    "diversion_enabled": false,
+    "supported_crops": ["Potato", "Maize", "Paddy"],
+    "facilities": ["Covered Depot", "Weighbridge Bay"],
+    "operating_hours": "08:00 AM - 06:00 PM",
+    "current_queue_count": 3,
+    "avg_processing_mins_per_ton": 8.0
+  },
+  {
+    "id": "C-04",
+    "name": "Centre D - Ranaghat Krishak Mandi",
+    "district": "Nadia",
+    "supervisor": "S. Roy",
+    "coordinates": {
+      "lat": 23.1802,
+      "lon": 88.5815
+    },
+    "capacity_mt": 90,
+    "current_intake_mt": 52,
+    "status": "Active",
+    "weighbridges": 3,
+    "diversion_enabled": false,
+    "supported_crops": ["Wheat", "Mustard", "Paddy"],
+    "facilities": ["Grain Warehouse", "Weighbridge Bay"],
+    "operating_hours": "08:00 AM - 06:00 PM",
+    "current_queue_count": 7,
+    "avg_processing_mins_per_ton": 7.1
+  },
+  {
+    "id": "C-05",
+    "name": "Centre E - Kalyani Storage & Hub",
+    "district": "Nadia",
+    "supervisor": "M. Das",
+    "coordinates": {
+      "lat": 22.9751,
+      "lon": 88.4344
+    },
+    "capacity_mt": 50,
+    "current_intake_mt": 12,
+    "status": "Active",
+    "weighbridges": 2,
+    "diversion_enabled": false,
+    "supported_crops": ["Potato", "Paddy", "Wheat", "Mustard", "Maize"],
+    "facilities": ["Cold Storage", "Central Storage", "Automated Moisture Meter"],
+    "operating_hours": "08:00 AM - 06:00 PM",
+    "current_queue_count": 2,
+    "avg_processing_mins_per_ton": 6.8
+  },
+  {
+    "id": "C-06",
+    "name": "Centre F - Guskara Sub-Mandi",
+    "district": "Purba Bardhaman",
+    "supervisor": "B. Mondal",
+    "coordinates": {
+      "lat": 23.4984,
+      "lon": 87.7511
+    },
+    "capacity_mt": 40,
+    "current_intake_mt": 39,
+    "status": "Critical (98%)",
+    "weighbridges": 2,
+    "diversion_enabled": true,
+    "supported_crops": ["Paddy", "Mustard"],
+    "facilities": ["Mini Shed", "Weighbridge"],
+    "operating_hours": "08:00 AM - 06:00 PM",
+    "current_queue_count": 18,
+    "avg_processing_mins_per_ton": 9.5
+  }
+]

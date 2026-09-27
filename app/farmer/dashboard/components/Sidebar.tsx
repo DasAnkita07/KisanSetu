@@ -13,7 +13,6 @@ const NAV_ITEMS = [
   { name: "Sell Produce", path: "/farmer/dashboard/sell", icon: "🛒" },
   { name: "Slot Booking", path: "/farmer/dashboard/slot-booking", icon: "📅" },
   { name: "Live Queue", path: "/farmer/dashboard/queue", icon: "👥" },
-  { name: "Orders", path: "/farmer/dashboard/orders", icon: "📦" },
   { name: "Payments", path: "/farmer/dashboard/payments", icon: "💳" },
   { name: "Track Status", path: "/farmer/dashboard/track-status", icon: "🚚" },
   { name: "Crop Assistant (AI)", path: "/farmer/dashboard/crop-assistant", icon: "🤖" },

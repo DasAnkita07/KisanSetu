@@ -27,23 +27,27 @@ export default function BookingQR() {
   }, []);
 
   return (
-    <div className="bg-[#F9FAF6] rounded-xl border border-[#D5D0BD] shadow-sm p-5">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-2xl">📱</span>
+  <div className="bg-white border border-[#E9DDBD] rounded-xl p-5 h-full w-full">
 
-        <h3 className="font-oldenburg text-xl text-[#351903]">
+      {/* Procurement QR Header */}
+      <div className="flex items-center gap-3 mb-3">
+        <span className="text-3xl">📱</span>
+
+        <h3 className="font-oldenburg text-lg text-[#351903]">
           Procurement QR
         </h3>
       </div>
 
-      <p className="font-onest text-sm text-[#351903]/70 mb-4">
+      {/* Description */}
+      <p className="font-onest text-base text-[#351903]/70 mb-6">
         Show this QR at the procurement center
       </p>
 
       {booking ? (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center flex-1">
 
-          <div className="bg-white p-3 rounded-xl border border-[#E9DDBD]">
+          {/* QR Code Box */}
+          <div className="bg-white p-6 rounded-2xl border border-[#E9DDBD] flex items-center justify-center">
             <QRCodeCanvas
               value={JSON.stringify(booking)}
               size={150}
@@ -52,65 +56,89 @@ export default function BookingQR() {
             />
           </div>
 
-          <div className="mt-4 text-center">
-            <p className="font-onest text-xs text-[#351903]/60">
+          {/* Unique Booking ID */}
+          <div className="mt-6 text-center">
+            <p className="font-onest text-sm text-[#351903]/60 tracking-wide">
               UNIQUE BOOKING ID
             </p>
 
-            <p className="font-onest text-lg font-bold text-[#365006] tracking-wider">
+            <p className="font-onest text-xl font-bold text-[#365006] tracking-wider mt-1">
               {booking.uniqueId}
             </p>
           </div>
 
-          <div className="w-full mt-4 space-y-1 text-sm font-onest text-[#351903]">
+          {/* Booking Details */}
+          <div className="w-full mt-7 space-y-4 font-onest text-base flex-1 flex flex-col justify-end pb-2">
 
             {booking.crop && (
-              <div className="flex justify-between">
-                <span className="text-[#351903]/60">Crop</span>
-                <span>{booking.crop}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[#351903]/60">
+                  Crop
+                </span>
+
+                <span className="font-medium text-[#351903]">
+                  {booking.crop}
+                </span>
               </div>
             )}
 
             {booking.date && (
-              <div className="flex justify-between">
-                <span className="text-[#351903]/60">Date</span>
-                <span>{booking.date}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[#351903]/60">
+                  Date
+                </span>
+
+                <span className="font-medium text-[#351903]">
+                  {booking.date}
+                </span>
               </div>
             )}
 
             {booking.time && (
-              <div className="flex justify-between">
-                <span className="text-[#351903]/60">Time</span>
-                <span>{booking.time}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[#351903]/60">
+                  Time
+                </span>
+
+                <span className="font-medium text-[#351903]">
+                  {booking.time}
+                </span>
               </div>
             )}
 
             {booking.center && (
-              <div className="flex justify-between">
-                <span className="text-[#351903]/60">Center</span>
-                <span>{booking.center}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[#351903]/60">
+                  Center
+                </span>
+
+                <span className="font-medium text-[#351903]">
+                  {booking.center}
+                </span>
               </div>
             )}
 
           </div>
+
         </div>
       ) : (
-        <div className="min-h-[230px] flex flex-col items-center justify-center text-center">
+        <div className="min-h-[300px] flex flex-col items-center justify-center text-center">
 
-          <div className="text-5xl mb-3 opacity-40">
+          <div className="text-6xl mb-4 opacity-40">
             📱
           </div>
 
-          <p className="font-onest text-sm text-[#351903]/60">
+          <p className="font-onest text-base text-[#351903]/60">
             No active slot booking
           </p>
 
-          <p className="font-onest text-xs text-[#351903]/50 mt-1">
+          <p className="font-onest text-sm text-[#351903]/50 mt-2">
             Book a procurement slot to generate your QR
           </p>
 
         </div>
       )}
+
     </div>
   );
 }

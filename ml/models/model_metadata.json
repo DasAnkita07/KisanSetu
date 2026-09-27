@@ -1,0 +1,31 @@
+{
+  "is_demo_model": true,
+  "disclaimer": "This model was trained on synthetic/demo data for development purposes only. Predictions are simulated estimates and not certified real-world mandi forecasts.",
+  "model_type": "RandomForestRegressor",
+  "n_estimators": 120,
+  "trained_on_samples": 1200,
+  "test_samples": 300,
+  "metrics": {
+    "mae_minutes": 2.73,
+    "rmse_minutes": 3.5,
+    "r2_score": 0.9768
+  },
+  "feature_names": [
+    "distance_km",
+    "queue_length_at_arrival",
+    "weighbridges_active",
+    "current_utilization_ratio",
+    "quantity_kg",
+    "diversion_active",
+    "slot_index"
+  ],
+  "feature_importances": {
+    "distance_km": 0.0075,
+    "queue_length_at_arrival": 0.2042,
+    "weighbridges_active": 0.0495,
+    "current_utilization_ratio": 0.2833,
+    "quantity_kg": 0.1124,
+    "diversion_active": 0.3399,
+    "slot_index": 0.0032
+  }
+}
