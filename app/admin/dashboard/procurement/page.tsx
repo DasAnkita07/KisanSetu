@@ -108,7 +108,7 @@ export default function ProcurementManagementPage() {
     farmer: "",
     crop: "Potato",
     quantity: "",
-    grade: "Grade A",
+    grade: "",
     centre: "Centre A",
   });
 
@@ -317,7 +317,7 @@ export default function ProcurementManagementPage() {
         booking.quantity || "",
 
       grade:
-        booking.grade || "Grade A",
+        booking.grade || "",
 
       centre:
         booking.center || "Centre A",
@@ -741,18 +741,6 @@ export default function ProcurementManagementPage() {
                     <div className="flex justify-between text-xs border-b border-[#D8E6B8] pb-2">
 
                       <span className="text-gray-500">
-                        Grade
-                      </span>
-
-                      <span className="font-bold">
-                        {(scannedBooking || manualBooking)?.grade}
-                      </span>
-
-                    </div>
-
-                    <div className="flex justify-between text-xs border-b border-[#D8E6B8] pb-2">
-
-                      <span className="text-gray-500">
                         Date
                       </span>
 
@@ -1139,6 +1127,10 @@ export default function ProcurementManagementPage() {
                       }
                       className="w-full h-10 px-3 rounded-lg border border-gray-300 outline-none focus:border-[#344E06]"
                     >
+
+                      <option value="" disabled>
+                        Select Grade
+                      </option>
 
                       <option>
                         Grade A

@@ -45,10 +45,10 @@ export default function BookingQR() {
 
           <div className="bg-white p-3 rounded-xl border border-[#E9DDBD]">
             <QRCodeCanvas
-              value={booking.uniqueId}
+              value={JSON.stringify(booking)}
               size={150}
               level="H"
-              includeMargin
+              marginSize={4}
             />
           </div>
 

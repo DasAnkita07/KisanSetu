@@ -99,15 +99,6 @@ export default function Sidebar({
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      {/* <button
-        onClick={() => setIsMobileOpen(true)}
-        className="fixed top-4 left-4 z-[60] md:hidden w-11 h-11 rounded-lg bg-[#365006] text-white shadow-lg flex items-center justify-center text-xl"
-        aria-label="Open menu"
-      >
-        ☰
-      </button> */}
-
       {/* Mobile Overlay */}
       {isMobileOpen && (
         <div
